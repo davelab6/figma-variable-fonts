@@ -1,7 +1,7 @@
 {
-  "name": "Fill Rule Editor",
-  "id": "771155994770327940",
+  "name": "react-figma-boilerplate",
+  "id": "745995778738837862",
   "api": "1.0.0",
-  "main": "code.js",
-  "ui": "ui.html"
+  "main": "dist/code.js",
+  "ui": "dist/ui.html"
 }

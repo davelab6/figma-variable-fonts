@@ -1,12 +1,56 @@
-# Fill Rule Editor
+# Figma Variable Fonts
+A plugin to provide basic variable fonts support through Samsa.js.
 
-This is a Figma plugin that lets you edit the fill rules of vector objects. Click here to install it: https://www.figma.com/c/plugin/771155994770327940.
+This plugin allows you to:
 
-1. render VF in figma
-2. load VF font list to browse
-3. load a VF fvar table
-4. Represent VF axes as sliders
-5. render svg on canvas of variable font
-6. render static font from slider values
-7. render text title
-8. Render text paragraph
+- Render variable fonts in the Figma canvas
+- Create static font instances, using a variable font's variable axes
+- Load the static instances in a variable font's fvar table
+- Preview, display, and update variable fonts
+- Add and edit text for variable fonts to the Figma canvas
+
+## Todos
+
+- [ ] Load variable fonts into plugin modal
+- [ ] Upload variable font from file path 
+- [ ] Preview variable font axes
+- [ ] Load variable font as static instance in Figma canvas
+- [ ] Load variable font as SVG in Figma canvas
+- [ ] View font instances from fvar table as list
+- [ ] Control variable font axes using slider
+- [ ] Control variable font axes by "locking" axes together
+- [ ] Edit text in Figma canvas that was added using the variable font plugin
+
+
+## Development
+- clone repository from GitHub
+    ````
+    git clone https://github.com/rememberlenny/figma-variable-fonts.git
+    ````
+
+- install node modules either with `Yarn` or `npm`
+
+    Yarn:
+    ````
+    cd <your project name>
+    yarn 
+    ````
+    
+    npm:
+    ````
+    cd <your project name>
+    npm install
+    ````
+
+- run
+
+    Yarn:
+    ````
+    yarn webpack:watch 
+    ````
+    
+    npm:
+    ````
+    cd figma-variable-fonts
+    npm run webpack:watch
+    ````
