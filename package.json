@@ -1,23 +1,21 @@
 {
-  "name": "react-figma-boilerplate",
+  "name": "figma-variable-fonts",
   "version": "1.0.0",
-  "description": "Boilerplate app for react-figma",
+  "description": "Figma plugin for rendering variable fonts",
   "main": "./src/code.tsx",
   "scripts": {
     "webpack:watch": "webpack --watch"
   },
   "keywords": [
-    "react",
-    "react-figma",
-    "react-figma-boilerplate",
+    "variable-fonts",
     "figma",
     "figma-plugins"
   ],
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/react-figma/react-figma-boilerplate.git"
+    "url": "git+ssh://git@github.com/rememberlenny/figma-variable-fonts.git"
   },
-  "author": "Yaroslav Losev <losevyaroslav@gmail.com>",
+  "author": "Leonard Bogdonoff <rememberlenny@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "react": "^16.9.0",
