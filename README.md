@@ -22,6 +22,12 @@ This plugin allows you to:
 - [ ] Edit text in Figma canvas that was added using the variable font plugin
 
 
+# Design
+
+![](https://github.com/rememberlenny/figma-variable-fonts/blob/master/preview.png?raw=true)
+
+- [Link to Figma design](https://www.figma.com/community/file/841567018431192369/Figma-Variable-Font-Plugin-design)
+
 ## Development
 - clone repository from GitHub
     ````
