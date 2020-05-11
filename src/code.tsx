@@ -1,11 +1,8 @@
-import * as React from 'react';
-import { render, subscribeOnMessages } from 'react-figma';
-import { App } from './App';
+  
+import { subscribeOnMessages } from 'react-figma';
 
-figma.showUI(__html__, { visible: true });
+figma.showUI(__html__);
 
-figma.ui.onmessage = message => {
+figma.ui.onmessage = (message) => {
   subscribeOnMessages(message);
 };
-
-render(<App />, figma.root);

@@ -18,7 +18,9 @@
   "author": "Leonard Bogdonoff <rememberlenny@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "react": "^16.9.0",
+    "@types/node": "^13.13.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-figma": "latest",
     "yoga-layout-prebuilt": "^1.9.3"
   },

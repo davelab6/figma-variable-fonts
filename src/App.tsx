@@ -1,20 +1,20 @@
+  
 import * as React from 'react';
-import { Image, Page, View, Text } from 'react-figma';
+
+import AboutModule from './components/AboutModule'
+import AxesModule from './components/AxesModule'
+import FontSetupModule from './components/FontSetupModule'
+import InfoModule from './components/InfoModule'
+import WebfontModule from './components/WebfontModule'
+
 export const App = () => {
     return (
-        <Page name="New page" isCurrent>
-            <View>
-                <View style={{ width: 200, height: 100, backgroundColor: '#dd55aa' }} />
-                <Text style={{ color: '#000000' }}>text</Text>
-                <Image
-                  source="http://placekitten.com/400x400"
-                  resizeMode="contain"
-                  style={{
-                    height: 400,
-                    width: 400,
-                  }}
-                />
-            </View>
-        </Page>
+        <>
+          <AboutModule />
+          <AxesModule />
+          <FontSetupModule />
+          <InfoModule />
+          <WebfontModule />
+        </>
     );
 };
