@@ -38,13 +38,11 @@ This plugin allows you to:
 
     Yarn:
     ````
-    cd <your project name>
     yarn 
     ````
     
     npm:
     ````
-    cd <your project name>
     npm install
     ````
 
@@ -57,6 +55,5 @@ This plugin allows you to:
     
     npm:
     ````
-    cd figma-variable-fonts
     npm run webpack:watch
     ````
