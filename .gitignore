@@ -1,1 +1,6 @@
-code.js
+node_modules
+/dist
+/build
+.idea
+_book
+.DS_Store
