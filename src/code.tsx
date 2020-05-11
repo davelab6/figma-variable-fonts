@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render, subscribeOnMessages } from 'react-figma';
 import { App } from './App';
 
-figma.showUI(__html__, { visible: false });
+figma.showUI(__html__, { visible: true });
 
 figma.ui.onmessage = message => {
   subscribeOnMessages(message);
