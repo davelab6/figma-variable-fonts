@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import AboutModule from './components/AboutModule';
 import AxesModule from './components/AxesModule';
@@ -8,14 +9,20 @@ import WebfontModule from './components/WebfontModule';
 
 import {AppProvider} from './AppContext';
 
+const Wrapper = styled.div`
+    padding: 8px;
+`;
+
 const App = () => {
     return (
         <AppProvider>
-            <InfoModule />
-            <AxesModule />
-            <WebfontModule />
-            <FontSetupModule />
-            <AboutModule />
+            <Wrapper>
+                <InfoModule />
+                <AxesModule />
+                <WebfontModule />
+                <FontSetupModule />
+                <AboutModule />
+            </Wrapper>
         </AppProvider>
     );
 };

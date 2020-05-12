@@ -5,9 +5,18 @@ const Panel = styled.div`
     background: pink;
 `;
 
-const PanelTitle = styled.h2``;
+const PanelTitle = styled.h2`
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+`;
 
-const PanelContent = styled.h2``;
+const PanelContent = styled.h2`
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 15px;
+`;
 
 type ModuleWrapperProps = {
     open?: boolean;
