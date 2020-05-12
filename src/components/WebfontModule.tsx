@@ -8,6 +8,13 @@ const WebfontWrapper = styled.div`
     padding: 16px;
 `;
 
+const WebfontText = styled.div`
+    color: #acacac;
+    font-size: 32px;
+    font-family: 'Inter', sans-serif;
+    font-variation-settings: ${props => props.axesCss};
+`;
+
 function WebfontModule() {
     const {state} = useContext(AppContext);
 
@@ -17,17 +24,11 @@ function WebfontModule() {
     });
     const axesCss = axisValues.join(', ');
 
-    const WebfontText = styled.div`
-        color: #acacac;
-        font-size: 32px;
-        font-family: 'Inter', sans-serif;
-        font-variation-settings: ${axesCss};
-    `;
-
-    console.log('state', state.axisData);
     return (
         <WebfontWrapper>
-            <WebfontText contenteditable="true">AaBbCc</WebfontText>
+            <WebfontText axesCss={axesCss} contenteditable="true">
+                AaBbCc
+            </WebfontText>
         </WebfontWrapper>
     );
 }
