@@ -18,8 +18,8 @@ const App = () => {
         <AppProvider>
             <Wrapper>
                 <InfoModule />
-                <AxesModule />
                 <WebfontModule />
+                <AxesModule />
                 <FontSetupModule />
                 <AboutModule />
             </Wrapper>

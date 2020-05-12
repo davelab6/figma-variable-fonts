@@ -6,7 +6,7 @@ import {Types} from '../reducers';
 import {AppContext} from '../AppContext';
 
 function FontSetupModule() {
-    const {state, dispatch} = useContext(AppContext);
+    const {dispatch} = useContext(AppContext);
 
     useEffect(() => {
         const fontUrl = 'https://cdn.jsdelivr.net/gh/google/fonts@master/ofl/inter/Inter[slnt,wght].ttf';

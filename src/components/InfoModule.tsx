@@ -14,7 +14,7 @@ function InfoModule() {
         <ModuleWrapper title="Info" open={names.length > 0}>
             {!!names && names.length > 0 && (
                 <>
-                    <div>Font: {names[0]}</div>
+                    <div>Font: {names[1]}</div>
                     <div>By {names[9]}</div>
                 </>
             )}
