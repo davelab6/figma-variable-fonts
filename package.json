@@ -21,36 +21,37 @@
   "dependencies": {
     "react": "16.13.1",
     "react-dom": "^16.13.1",
+    "react-rangeslider": "^2.2.0",
     "styled-components": "^5.1.0"
   },
   "devDependencies": {
-		"@types/react": "^16.8.24",
-		"@types/react-dom": "^16.8.5",
-		"css-loader": "^3.1.0",
-		"html-webpack-inline-source-plugin": "^0.0.10",
-		"html-webpack-plugin": "^3.2.0",
-		"husky": "^3.0.2",
-		"lint-staged": "^9.2.1",
-		"prettier": "^1.18.2",
-		"style-loader": "^0.23.1",
-		"ts-loader": "^6.0.4",
-    "tslint": "^5.18.0",
+    "@types/react": "^16.8.24",
+    "@types/react-dom": "^16.8.5",
+    "css-loader": "^3.1.0",
+    "html-webpack-inline-source-plugin": "^0.0.10",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.2",
+    "lint-staged": "^9.2.1",
+    "prettier": "^1.18.2",
     "samsa": "git+https://github.com/rememberlenny/samsa.git#master",
-		"tslint-react": "^4.0.0",
-		"typescript": "^3.7.4",
-		"url-loader": "^2.1.0",
-		"webpack": "^4.41.4",
-		"webpack-cli": "^3.3.6"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
-	},
-	"lint-staged": {
-		"src/**/*.{js,jsx,ts,tsx,css,json}": [
-			"prettier --write",
-			"git add"
-		]
-	}
+    "style-loader": "^0.23.1",
+    "ts-loader": "^6.0.4",
+    "tslint": "^5.18.0",
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.7.4",
+    "url-loader": "^2.1.0",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.6"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,css,json}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
 }

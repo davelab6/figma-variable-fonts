@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
-import ModuleWrapper from './ModuleWrapper';
+
+import AxisSlider from './AxisSlider';
 
 import {AppContext} from '../AppContext';
 
@@ -9,11 +10,14 @@ function AxesModule() {
     const axes = state.fontData.data?.axes;
 
     const displayAxes = axes => {
-        return axes.map((axis, index) => (
-            <div key={index}>
-                {axis.tag} - {axis.min} - {axis.default} - {axis.max}
-            </div>
-        ));
+        return axes.map((axis, index) => {
+            const {min, max, tag, default: defaultValue} = axis;
+            return (
+                <div key={index}>
+                    <AxisSlider tag={tag} min={min} defaultValue={defaultValue} max={max} />
+                </div>
+            );
+        });
     };
 
     return (
