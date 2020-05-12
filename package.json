@@ -2,7 +2,6 @@
   "name": "figma-variable-fonts",
   "version": "1.0.0",
   "description": "Figma plugin for rendering variable fonts",
-  "main": "./src/code.tsx",
   "scripts": {
     "build": "/usr/local/bin/node node_modules/.bin/webpack --mode=production",
     "build:watch": "/usr/local/bin/node node_modules/.bin/webpack --mode=development --watch",
