@@ -1,10 +1,13 @@
 import React, {createContext, useReducer, Dispatch} from 'react';
-import {fontReducer, FontActions} from './reducers';
+import {fontReducer, FontActions, axisReducer, AxisActions} from './reducers';
 
 interface InitialStateType {
     fontData: {
         data: any;
         loading: boolean;
+    };
+    axisData: {
+        [key: string]: number;
     };
 }
 
@@ -13,6 +16,7 @@ export const initialState = {
         data: {},
         loading: false,
     },
+    axisData: {},
 };
 
 export const AppContext = createContext<{
@@ -23,8 +27,9 @@ export const AppContext = createContext<{
     dispatch: () => null,
 });
 
-const mainReducer = ({fontData}: InitialStateType, action: FontActions) => ({
+const mainReducer = ({fontData, axisData}: InitialStateType, action: FontActions | AxisActions) => ({
     fontData: fontReducer(fontData, action),
+    axisData: axisReducer(axisData, action),
 });
 
 export const AppProvider: React.FC = ({children}) => {

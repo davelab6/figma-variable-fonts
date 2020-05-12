@@ -30,6 +30,8 @@ export enum Types {
     Reset = 'RESET_FONTDATA',
     Update = 'UPDATE_FONTDATA',
     Fetching = 'FETCH_FONTDATA',
+    UpdateAxis = 'UPDATE_AXIS',
+    ResetAxis = 'RESET_AXIS',
 }
 
 interface FontActionType {
@@ -56,17 +58,52 @@ export function fontReducer(state, action: FontActionType) {
                 loading: false,
                 data: {},
             };
+
         case Types.Update:
             return {
                 ...state,
                 loading: false,
                 data: action.payload.fontData,
             };
+
         case Types.Fetching:
             return {
                 ...state,
                 loading: true,
             };
+
+        default:
+            return state;
+    }
+}
+
+interface AxisActionType {
+    type: Types.UpdateAxis | Types.ResetAxis;
+    payload?: {
+        axisValues?: {[key: string]: any};
+    };
+}
+
+interface AxisPayload {
+    [Types.UpdateAxis]: {
+        axisValues: AxisActionType;
+    };
+    [Types.ResetAxis]: {
+        axisValues: AxisActionType;
+    };
+}
+
+export type AxistActions = ActionMap<AxisPayload>[keyof ActionMap<AxisPayload>];
+
+export function axisReducer(state, action: AxisActionType) {
+    switch (action.type) {
+        // ... to make sure that we don't have any other strings here ...
+        case Types.UpdateAxis:
+            return {
+                ...state,
+                ...action.payload.axisValues,
+            };
+
         default:
             return state;
     }
