@@ -80,20 +80,20 @@ export function fontReducer(state, action: FontActionType) {
 interface AxisActionType {
     type: Types.UpdateAxis | Types.ResetAxis;
     payload?: {
-        axisValues?: {[key: string]: any};
+        [key: string]: number;
     };
 }
 
 interface AxisPayload {
     [Types.UpdateAxis]: {
-        axisValues: AxisActionType;
+        [key: string]: number;
     };
     [Types.ResetAxis]: {
-        axisValues: AxisActionType;
+        [key: string]: number;
     };
 }
 
-export type AxistActions = ActionMap<AxisPayload>[keyof ActionMap<AxisPayload>];
+export type AxisActions = ActionMap<AxisPayload>[keyof ActionMap<AxisPayload>];
 
 export function axisReducer(state, action: AxisActionType) {
     switch (action.type) {
@@ -101,7 +101,13 @@ export function axisReducer(state, action: AxisActionType) {
         case Types.UpdateAxis:
             return {
                 ...state,
-                ...action.payload.axisValues,
+                ...action.payload,
+            };
+
+        case Types.ResetAxis:
+            return {
+                ...state,
+                ...action.payload,
             };
 
         default:

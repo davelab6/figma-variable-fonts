@@ -13,9 +13,15 @@ function FontSetupModule() {
         const samsaOptions = {
             url: fontUrl,
             fontFamily: 'DefaultFont',
-            callback: (data: object) => {
+            callback: (data: {[key: string]: any}) => {
                 const payload = {fontData: data};
                 dispatch({type: Types.Update, payload});
+
+                const axisDefaults = {};
+                data.axes.forEach(axis => {
+                    axisDefaults[axis.tag] = axis.default;
+                });
+                dispatch({type: Types.ResetAxis, payload: axisDefaults});
             },
         };
         let vf = new SamsaFont(samsaOptions);

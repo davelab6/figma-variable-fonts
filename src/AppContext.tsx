@@ -21,7 +21,7 @@ export const initialState = {
 
 export const AppContext = createContext<{
     state: InitialStateType;
-    dispatch: Dispatch<FontActions>;
+    dispatch: Dispatch<FontActions | AxisActions>;
 }>({
     state: initialState,
     dispatch: () => null,
