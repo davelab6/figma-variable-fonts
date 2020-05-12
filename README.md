@@ -50,10 +50,10 @@ This plugin allows you to:
 
     Yarn:
     ````
-    yarn webpack:watch 
+    yarn build:watch
     ````
     
     npm:
     ````
-    npm run webpack:watch
+    npm run build:watch
     ````

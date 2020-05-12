@@ -1,3 +1,5 @@
+
+import * as React from 'react';
 import ModuleWrapper from './ModuleWrapper';
 
 function InfoModule() {

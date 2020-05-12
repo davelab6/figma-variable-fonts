@@ -4,7 +4,9 @@
   "description": "Figma plugin for rendering variable fonts",
   "main": "./src/code.tsx",
   "scripts": {
-    "webpack:watch": "webpack --watch"
+    "build": "/usr/local/bin/node node_modules/.bin/webpack --mode=production",
+    "build:watch": "/usr/local/bin/node node_modules/.bin/webpack --mode=development --watch",
+    "prettier:format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,json}' "
   },
   "keywords": [
     "variable-fonts",
@@ -18,19 +20,37 @@
   "author": "Leonard Bogdonoff <rememberlenny@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "@types/react": "^16.9.35",
-    "@types/react-dom": "^16.9.8",
-    "css-loader": "^3.1.0",
-    "html-webpack-inline-source-plugin": "0.0.10",
-    "html-webpack-plugin": "^3.2.0",
     "react": "16.13.1",
     "react-dom": "^16.13.1",
-    "style-loader": "^0.23.1",
-    "styled-components": "^5.1.0",
-    "ts-loader": "^6.0.4",
-    "typescript": "^3.5.3",
-    "url-loader": "^2.1.0",
-    "webpack": "^4.38.0",
-    "webpack-cli": "^3.3.6"
-  }
+    "styled-components": "^5.1.0"
+  },
+  "devDependencies": {
+		"@types/react": "^16.8.24",
+		"@types/react-dom": "^16.8.5",
+		"css-loader": "^3.1.0",
+		"html-webpack-inline-source-plugin": "^0.0.10",
+		"html-webpack-plugin": "^3.2.0",
+		"husky": "^3.0.2",
+		"lint-staged": "^9.2.1",
+		"prettier": "^1.18.2",
+		"style-loader": "^0.23.1",
+		"ts-loader": "^6.0.4",
+		"tslint": "^5.18.0",
+		"tslint-react": "^4.0.0",
+		"typescript": "^3.7.4",
+		"url-loader": "^2.1.0",
+		"webpack": "^4.41.4",
+		"webpack-cli": "^3.3.6"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"src/**/*.{js,jsx,ts,tsx,css,json}": [
+			"prettier --write",
+			"git add"
+		]
+	}
 }

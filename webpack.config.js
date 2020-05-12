@@ -1,3 +1,4 @@
+  
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
@@ -10,7 +11,7 @@ module.exports = (env, argv) => ({
 
   entry: {
     ui: './src/ui.tsx', // The entry point for your UI code
-    code: './src/code.tsx', // The entry point for your plugin code
+    code: './src/controller.ts', // The entry point for your plugin code
   },
 
   module: {
@@ -22,7 +23,7 @@ module.exports = (env, argv) => ({
       { test: /\.css$/, loader: [{ loader: 'style-loader' }, { loader: 'css-loader' }] },
 
       // Allows you to use "<%= require('./file.svg') %>" in your HTML code to get a data URI
-      { test: /\.(png|jpg|gif|webp|svg|zip)$/, loader: [{ loader: 'url-loader' }] },
+      { test: /\.(png|jpg|gif|webp|svg)$/, loader: [{ loader: 'url-loader' }] },
     ],
   },
 

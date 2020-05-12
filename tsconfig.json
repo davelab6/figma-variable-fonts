@@ -1,7 +1,13 @@
-  
 {
   "compilerOptions": {
     "target": "es6",
-    "jsx": "react"
+    "outDir": "dist",
+    "jsx": "react",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "experimentalDecorators": true,
+    "removeComments": true,
+    "noImplicitAny": false,
+    "moduleResolution": "node"
   }
 }
