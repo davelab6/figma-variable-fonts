@@ -12,14 +12,14 @@ type AxisSliderProps = {
 };
 
 const AxisTag = styled.div`
-    font-weight: 500;
+    font-weight: 600;
     font-size: 10px;
-    width: 48px;
+    width: 40px;
 `;
 
 const AxisName = styled.div`
     font-weight: 400;
-    font-size: 8px;
+    font-size: 9px;
 `;
 
 const AxisCurrentValue = styled.div`
@@ -31,6 +31,7 @@ const SliderLabels = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 8px;
 `;
 
 const SliderLabelsLeft = styled.div`
@@ -42,6 +43,7 @@ const SliderLabelsLeft = styled.div`
 const SliderLabelsRight = styled.div``;
 
 const SliderRow = styled.div`
+    .rangeslider.rangeslider-horizontal,
     .rangeslider-horizontal .rangeslider__fill {
         background: #efefef;
     }
@@ -73,13 +75,18 @@ const SliderRow = styled.div`
         box-shadow: none;
     }
 
+    .rangeslider__handle:focus {
+        outline: none;
+    }
+
     .rangeslider-horizontal .rangeslider__handle:after {
         display: none;
     }
 `;
 
 const AxisSliderWrapper = styled.div`
-    margin-bottom: 16px;
+    margin-bottom: 8px;
+    margin-top: 8px;
 `;
 
 function AxisSlider({name, tag, min, defaultValue, max}: AxisSliderProps) {
