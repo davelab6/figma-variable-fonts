@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Slider from 'react-rangeslider';
 import styled from 'styled-components';
+import 'react-rangeslider/lib/index.css';
 
 type AxisSliderProps = {
     tag: string;
@@ -12,7 +13,7 @@ type AxisSliderProps = {
 function AxisSlider({tag, min, defaultValue, max}: AxisSliderProps) {
     const [current, setCurrent] = useState(defaultValue);
 
-    return <Slider min={min} max={max} value={current} handleLabel={current} onChange={setCurrent} />;
+    return <Slider min={min} max={max} value={current} handleLabel={`${current}`} onChange={setCurrent} />;
 }
 
 export default AxisSlider;
