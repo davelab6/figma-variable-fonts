@@ -18,19 +18,18 @@
   "author": "Leonard Bogdonoff <rememberlenny@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^13.13.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-figma": "latest",
-    "yoga-layout-prebuilt": "^1.9.3"
-  },
-  "devDependencies": {
-    "html-webpack-inline-source-plugin": "^0.0.10",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.5",
+    "css-loader": "^3.1.0",
+    "html-webpack-inline-source-plugin": "0.0.10",
     "html-webpack-plugin": "^3.2.0",
-    "react-figma-webpack-config": "^0.0.5",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "style-loader": "^0.23.1",
     "ts-loader": "^6.0.4",
     "typescript": "^3.5.3",
-    "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.7"
+    "url-loader": "^2.1.0",
+    "webpack": "^4.38.0",
+    "webpack-cli": "^3.3.6"
   }
 }

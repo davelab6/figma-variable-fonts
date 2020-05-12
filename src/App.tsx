@@ -7,12 +7,36 @@ import FontSetupModule from './components/FontSetupModule'
 import InfoModule from './components/InfoModule'
 import WebfontModule from './components/WebfontModule'
 
-export const App = () => (
-  <>
-    <InfoModule />
-    <WebfontModule />
-    <AxesModule />
-    <FontSetupModule />
-    <AboutModule />
-  </>
-);
+const App = () => {
+  let textbox: HTMLInputElement;
+
+  const countRef = (element: HTMLInputElement) => {
+    if (element) element.value = '5'
+    textbox = element
+  }
+
+  const onCreate = () => {
+    const count = parseInt(textbox.value, 10)
+    parent.postMessage({ pluginMessage: { type: 'create-rectangles', count } }, '*')
+  }
+
+  const onCancel = () => {
+    parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
+  }
+
+  return (
+    <>
+      <h2>Rectangle Creator</h2>
+      <p>Count: <input ref={countRef} /></p>
+      <button id="create" onClick={onCreate}>Create</button>
+      <button onClick={onCancel}>Cancel</button>
+      <InfoModule />
+      <WebfontModule />
+      <AxesModule />
+      <FontSetupModule />
+      <AboutModule />
+    </>
+  );
+}
+
+export default App;
