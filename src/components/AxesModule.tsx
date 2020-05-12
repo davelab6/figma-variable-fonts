@@ -12,10 +12,10 @@ function AxesModule() {
 
     const displayAxes = axes => {
         return axes.map((axis, index) => {
-            const {min, max, tag, default: defaultValue} = axis;
+            const {min, max, tag, default: defaultValue, name} = axis;
             return (
                 <div key={index}>
-                    <AxisSlider tag={tag} min={min} defaultValue={defaultValue} max={max} />
+                    <AxisSlider name={name} tag={tag} min={min} defaultValue={defaultValue} max={max} />
                 </div>
             );
         });
