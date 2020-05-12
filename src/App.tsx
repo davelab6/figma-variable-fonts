@@ -10,7 +10,7 @@ import WebfontModule from './components/WebfontModule';
 import {AppProvider} from './AppContext';
 
 const Wrapper = styled.div`
-    padding: 8px;
+    margin: -8px;
 `;
 
 const App = () => {
