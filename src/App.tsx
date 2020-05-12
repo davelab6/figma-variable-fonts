@@ -19,6 +19,7 @@ const App = () => {
             <Wrapper>
                 <InfoModule />
                 <WebfontModule />
+                <AxesModule />
                 <FontSetupModule />
                 <AboutModule />
             </Wrapper>
@@ -27,5 +28,3 @@ const App = () => {
 };
 
 export default App;
-
-// <AxesModule />

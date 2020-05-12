@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 
+import ModuleWrapper from './ModuleWrapper';
 import AxisSlider from './AxisSlider';
 
 import {AppContext} from '../AppContext';
