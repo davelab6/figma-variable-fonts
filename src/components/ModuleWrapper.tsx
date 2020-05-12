@@ -1,5 +1,4 @@
-import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const Panel = styled.div`
   background: pink;
@@ -14,9 +13,9 @@ const PanelContent = styled.h2`
 `;
 
 type ModuleWrapperProps = {
-  open: boolean,
+  open?: boolean,
   title: string,
-  children: 
+  children?: React.ReactNode
 }
 
 const ModuleWrapper = ({open, title, children}:ModuleWrapperProps) => (

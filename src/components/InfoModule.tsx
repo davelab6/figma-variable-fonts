@@ -1,11 +1,9 @@
-import React from 'react';
+import ModuleWrapper from './ModuleWrapper';
 
 function InfoModule() {
   return (
-    <div id="panel-info" className="panel open">
-      <h2>Info</h2>
-      <div className="panel-content"></div>
-    </div>
+    <ModuleWrapper title="Info">
+    </ModuleWrapper>
   )
 }
 

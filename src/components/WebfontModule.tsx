@@ -1,11 +1,9 @@
-import React from 'react';
+import ModuleWrapper from './ModuleWrapper';
 
 function WebfontModule() {
   return (
-    <div id="panel-webfont" className="panel open">
-      <h2>Webfont</h2>
-      <div className="panel-content"></div>
-    </div>
+    <ModuleWrapper title="Webfont">
+    </ModuleWrapper>
   )
 }
 
