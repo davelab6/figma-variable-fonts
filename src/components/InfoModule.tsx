@@ -8,8 +8,6 @@ function InfoModule() {
 
     const names = state.fontData.data?.names || [];
 
-    console.log('names', names);
-
     return (
         <ModuleWrapper title="Info" open={names.length > 0}>
             {!!names && names.length > 0 && (

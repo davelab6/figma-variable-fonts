@@ -95,8 +95,6 @@ function AxisSlider({name, tag, min, defaultValue, max}: AxisSliderProps) {
     const [current, setCurrent] = useState(defaultValue);
     const {state, dispatch} = useContext(AppContext);
 
-    console.log('state', state);
-
     const onChange = (newValue: number) => {
         setCurrent(newValue);
         const payload = {[tag]: newValue};
