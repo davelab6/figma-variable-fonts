@@ -7,14 +7,12 @@ import FontSetupModule from './components/FontSetupModule'
 import InfoModule from './components/InfoModule'
 import WebfontModule from './components/WebfontModule'
 
-export const App = () => {
-    return (
-        <>
-          <AboutModule />
-          <AxesModule />
-          <FontSetupModule />
-          <InfoModule />
-          <WebfontModule />
-        </>
-    );
-};
+export const App = () => (
+  <>
+    <InfoModule />
+    <WebfontModule />
+    <AxesModule />
+    <FontSetupModule />
+    <AboutModule />
+  </>
+);
