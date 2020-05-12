@@ -1,13 +1,11 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import ModuleWrapper from './ModuleWrapper';
 
-import {SamsaFont} from 'samsa';
-import {Types} from '../reducers';
 import {AppContext} from '../AppContext';
 
 function AxesModule() {
-    const {state, dispatch} = useContext(AppContext);
-    console.log('state', state.fontData.data?.axes);
+    const {state} = useContext(AppContext);
+
     const axes = state.fontData.data?.axes;
 
     const displayAxes = axes => {

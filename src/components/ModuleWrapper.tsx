@@ -5,13 +5,9 @@ const Panel = styled.div`
     background: pink;
 `;
 
-const PanelTitle = styled.h2`
-    background: green;
-`;
+const PanelTitle = styled.h2``;
 
-const PanelContent = styled.h2`
-    background: green;
-`;
+const PanelContent = styled.h2``;
 
 type ModuleWrapperProps = {
     open?: boolean;
