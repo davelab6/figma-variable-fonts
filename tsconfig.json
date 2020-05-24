@@ -4,6 +4,7 @@
     "outDir": "dist",
     "jsx": "react",
     "noUnusedLocals": true,
+    "allowSyntheticDefaultImports": true,
     "noUnusedParameters": true,
     "experimentalDecorators": true,
     "removeComments": true,
