@@ -21,7 +21,7 @@ const App = () => {
                 <WebfontModule />
                 <AxesModule />
                 <FontSetupModule />
-                <AboutModule />
+                <AboutModule open={true} />
             </Wrapper>
         </AppProvider>
     );
