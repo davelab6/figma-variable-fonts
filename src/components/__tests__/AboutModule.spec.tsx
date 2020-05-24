@@ -7,6 +7,6 @@ describe('AboutModule', () => {
     afterEach(cleanup);
     it('renders correctly', () => {
         const {container} = render(<AboutModule />);
-        expect(container).toContain('Variable fonts plugin');
+        expect(container.innerHTML).toContain('Variable fonts plugin');
     });
 });
