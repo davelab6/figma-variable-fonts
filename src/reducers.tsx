@@ -49,7 +49,7 @@ interface FontPayload {
 
 export type FontActions = ActionMap<FontPayload>[keyof ActionMap<FontPayload>];
 
-export function fontReducer(state, action: FontActionType) {
+export function fontReducer(state, action: FontActionType | AxisActionType) {
     switch (action.type) {
         // ... to make sure that we don't have any other strings here ...
         case Types.Reset:
@@ -95,7 +95,7 @@ interface AxisPayload {
 
 export type AxisActions = ActionMap<AxisPayload>[keyof ActionMap<AxisPayload>];
 
-export function axisReducer(state, action: AxisActionType) {
+export function axisReducer(state, action: AxisActionType | FontActionType) {
     switch (action.type) {
         // ... to make sure that we don't have any other strings here ...
         case Types.UpdateAxis:
