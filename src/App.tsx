@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {hot} from 'react-hot-loader';
 
 import AboutModule from './components/AboutModule';
 import AxesModule from './components/AxesModule';
@@ -27,4 +28,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default hot(module)(App);

@@ -1,3 +1,5 @@
+import {SamsaFont} from 'samsa';
+
 type ActionMap<M extends {[index: string]: any}> = {
     [Key in keyof M]: M[Key] extends undefined
         ? {
@@ -32,10 +34,12 @@ export enum Types {
     Fetching = 'FETCH_FONTDATA',
     UpdateAxis = 'UPDATE_AXIS',
     ResetAxis = 'RESET_AXIS',
+    SetupSamsa = 'SETUP_SAMSA',
+    AddInstance = 'ADD_INSTANCE',
 }
 
 interface FontActionType {
-    type: Types.Reset | Types.Update | Types.Fetching;
+    type: Types.Reset | Types.Update | Types.Fetching | Types.SetupSamsa | Types.AddInstance;
     payload?: {
         fontData?: FontDataType;
     };
@@ -52,6 +56,57 @@ export type FontActions = ActionMap<FontPayload>[keyof ActionMap<FontPayload>];
 export function fontReducer(state, action: FontActionType | AxisActionType) {
     switch (action.type) {
         // ... to make sure that we don't have any other strings here ...
+        case Types.SetupSamsa:
+            console.log('payload', action.payload);
+            return {
+                ...state,
+                samsa: action.payload,
+            };
+        case Types.AddInstance:
+            const config = {
+                path: '.',
+                isNode: false,
+            };
+
+            const init = {
+                callback: vfLoaded,
+                outFile: 'samsa-instance',
+                url: 'https://lorp.github.io/samsa/src/fonts/Amstelvar-Roman-VF.ttf',
+            };
+
+            const allInstances = [];
+            let instanceDefs = [];
+
+            instanceDefs = ['wght 155'];
+
+            const vf = new SamsaFont(init, config);
+
+            function vfLoaded(font) {
+                console.log('font', font);
+                // assemble the list of supplied instance definitions, expanding "named" and "stat" values
+                instanceDefs.forEach(instanceDef => {
+                    instanceDef = instanceDef.trim();
+                    const instances = [];
+                    const fvs = {}; // default
+
+                    let instanceType;
+
+                    instances.push(font.addInstance({wght: 155}, {type: 'custom'}));
+                    font.instances.pop();
+
+                    allInstances.push(...instances);
+                });
+
+                // for each instance, compile binary file
+                allInstances.forEach((instance, i) => {
+                    const extraName = instance.name === undefined ? '' : `(${instance.name})`;
+                    instance.filename = `${init.outFile}-${i}${extraName}.ttf`;
+                    font.exportInstance(instance);
+                });
+            }
+            return {
+                ...state,
+            };
         case Types.Reset:
             return {
                 ...state,

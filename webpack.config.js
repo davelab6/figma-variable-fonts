@@ -12,12 +12,19 @@ module.exports = (env, argv) => ({
   entry: {
     ui: './src/ui.tsx', // The entry point for your UI code
     code: './src/code.ts', // The entry point for your plugin code
+    entry: "./src/index.js",
   },
 
   module: {
     rules: [
       // Converts TypeScript code to JavaScript
-      { test: /\.tsx?$/, use: 'ts-loader', exclude: /node_modules/ },
+      { 
+        test: /\.(js|jsx|ts|tsx)$/,
+        use: 'ts-loader', 
+        exclude: /(node_modules|bower_components)/
+        options: { presets: ["@babel/env"] }
+        loader: "babel-loader",
+      },
 
       // Enables including CSS by doing "import './file.css'" in your TypeScript code
       { test: /\.css$/, loader: [{ loader: 'style-loader' }, { loader: 'css-loader' }] },
@@ -28,15 +35,24 @@ module.exports = (env, argv) => ({
   },
 
   // Webpack tries these extensions for you if you omit the extension like "import './file'"
-  resolve: { extensions: ['.tsx', '.ts', '.jsx', '.js'] },
+  resolve: { extensions: ['*', '.tsx', '.ts', '.jsx', '.js'] },
 
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'), // Compile into a folder called "dist"
+    publicPath: "/dist/",
+  },
+
+  devServer: {
+    contentBase: path.join(__dirname, "public/"),
+    port: 3000,
+    publicPath: "http://localhost:3000/dist/",
+    hotOnly: true
   },
 
   // Tells Webpack to generate "ui.html" and to inline "ui.ts" into it
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: './src/ui.html',
       filename: 'ui.html',

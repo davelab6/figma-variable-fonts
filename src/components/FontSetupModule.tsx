@@ -9,7 +9,7 @@ function FontSetupModule() {
     const {dispatch} = useContext(AppContext);
 
     useEffect(() => {
-        const fontUrl = 'https://cdn.jsdelivr.net/gh/google/fonts@master/ofl/inter/Inter[slnt,wght].ttf';
+        const fontUrl = 'https://lorp.github.io/samsa/src/fonts/Amstelvar-Roman-VF.ttf';
         const samsaOptions = {
             url: fontUrl,
             fontFamily: 'DefaultFont',
@@ -25,7 +25,8 @@ function FontSetupModule() {
             },
         };
         let vf = new SamsaFont(samsaOptions);
-        console.log('vf', vf);
+        dispatch({type: Types.SetupSamsa, payload: vf});
+        dispatch({type: Types.AddInstance});
     }, []);
 
     return (

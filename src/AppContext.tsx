@@ -3,6 +3,8 @@ import {fontReducer, FontActions, axisReducer, AxisActions} from './reducers';
 
 interface InitialStateType {
     fontData: {
+        samsa: any;
+        namedInstaces: any;
         data: any;
         loading: boolean;
     };
@@ -13,6 +15,8 @@ interface InitialStateType {
 
 export const initialState = {
     fontData: {
+        samsa: null,
+        namedInstaces: null,
         data: {},
         loading: false,
     },
