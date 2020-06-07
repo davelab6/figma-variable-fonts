@@ -5,6 +5,11 @@ const tsImportPluginFactory = require('ts-import-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+    node: {
+        net: 'empty',
+        tls: 'empty',
+        dns: 'empty',
+    },
     mode: 'development',
     context: resolve(__dirname, 'src'),
     entry: [
@@ -66,6 +71,7 @@ module.exports = {
                               }) ]
                             }),
                             compilerOptions: {
+                              "typeRoots" : ["./typings", "./node_modules/@types/"],
                               module: 'es2015'
                             }
                         },

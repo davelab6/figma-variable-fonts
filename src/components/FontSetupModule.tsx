@@ -1,13 +1,11 @@
+// @ts-nocheck
+
 import React, {useContext, useEffect} from 'react';
 import ModuleWrapper from './layouts/ModuleWrapper';
 
 import {SamsaFont} from 'samsa';
-import {Types} from '../reducers';
-import {AppContext} from '../AppContext';
 
 function FontSetupModule() {
-    const {dispatch} = useContext(AppContext);
-
     useEffect(() => {
         const fontUrl = 'https://cdn.jsdelivr.net/gh/google/fonts@master/ofl/inter/Inter[slnt,wght].ttf';
         const samsaOptions = {
@@ -18,13 +16,13 @@ function FontSetupModule() {
                 dispatch({type: Types.Update, payload});
 
                 const axisDefaults = {};
-                data.axes.forEach(axis => {
+                data.axes.forEach((axis) => {
                     axisDefaults[axis.tag] = axis.default;
                 });
                 dispatch({type: Types.ResetAxis, payload: axisDefaults});
             },
         };
-        let vf = new SamsaFont(samsaOptions);
+        const vf = new SamsaFont(samsaOptions);
         console.log('vf', vf);
     }, []);
 

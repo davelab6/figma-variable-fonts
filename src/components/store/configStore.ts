@@ -1,22 +1,12 @@
-import { createStore, applyMiddleware, Dispatch, Action } from "redux";
-import {composeWithDevTools} from "redux-devtools-extension/developmentOnly";
-import thunk from "redux-thunk";
-import { FontData } from "../model/FontData";
-import { initStoreAction } from "../actions/actions";
-import { rootReducer } from "../reducers/rootReducer";
+import {createStore, applyMiddleware, Dispatch, Action} from 'redux';
+import {composeWithDevTools} from 'redux-devtools-extension/developmentOnly';
+import thunk from 'redux-thunk';
+import {FontData} from '../model/FontData';
+import {initStoreAction} from '../actions/actions';
+import {rootReducer} from '../reducers/rootReducer';
 
 export interface IState {
     fonts: FontData[];
-}
-
-interface InitialStateType {
-    fontData: {
-        data: any;
-        loading: boolean;
-    };
-    axisData: {
-        [key: string]: number;
-    };
 }
 
 export const initialState = {
@@ -24,7 +14,6 @@ export const initialState = {
         data: {},
         loading: false,
     },
-    axisData: {},
 };
 
 export const initStore = () => {
@@ -35,17 +24,9 @@ export const initStore = () => {
 };
 
 export const configureStore = () => {
-    if (process.env.NODE_ENV === "production") {
-        return createStore(
-            rootReducer,
-            applyMiddleware(thunk),
-        );
+    if (process.env.NODE_ENV === 'production') {
+        return createStore(rootReducer, applyMiddleware(thunk));
     } else {
-        return createStore(
-            rootReducer,
-            composeWithDevTools(
-                applyMiddleware(thunk),
-            ),
-        );
+        return createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
     }
 };

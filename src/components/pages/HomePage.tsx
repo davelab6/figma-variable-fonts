@@ -1,12 +1,21 @@
-import * as React from "react";
-import { Card } from "antd";
+import * as React from 'react';
+import styled from 'styled-components';
+import About from '../AboutModule';
+import Info from '../InfoModule';
+import FontSetup from '../FontSetupModule';
+
+const Wrapper = styled.div`
+    margin: -8px;
+`;
 
 class HomePage extends React.Component<{}, {}> {
     public render(): JSX.Element {
         return (
-            <Card bordered title="Hello React & Antd" style={{ margin: "16px 16px"}}>
-                <p>Happy coding!</p>
-            </Card>
+            <Wrapper>
+                <Info />
+                <FontSetup />
+                <About />
+            </Wrapper>
         );
     }
 }

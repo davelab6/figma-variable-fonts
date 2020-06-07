@@ -1,12 +1,12 @@
-import React, {useContext} from 'react';
-import ModuleWrapper from './layouts/ModuleWrapper';
+// @ts-nocheck
 
-import {AppContext} from '../AppContext';
+import React, {useContext} from 'react';
+import {useSelector} from 'react-redux';
+import ModuleWrapper from './layouts/ModuleWrapper';
+import FontAxis from './model/FontAxis';
 
 function InfoModule() {
-    const {state} = useContext(AppContext);
-
-    const names = state.fontData.data?.names || [];
+    const names: FontAxis[] = useSelector((state) => state.fontData) || [];
 
     return (
         <ModuleWrapper title="Info" open={names.length > 0}>

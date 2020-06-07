@@ -33,6 +33,7 @@ module.exports = {
                               }) ]
                             }),
                             compilerOptions: {
+                              "typeRoots" : ["./typings", "./node_modules/@types/"],
                               module: 'es2015'
                             }
                         },

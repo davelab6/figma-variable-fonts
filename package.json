@@ -23,6 +23,7 @@
   ],
   "dependencies": {
     "@figma/plugin-typings": "^1.15.0",
+    "@types/react-rangeslider": "^2.2.2",
     "antd": "^4.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -33,7 +34,7 @@
     "react-router-dom": "5.1.2",
     "redux": "4.0.5",
     "redux-thunk": "2.3.0",
-    "samsa": "^0.0.3",
+    "samsa": "git+https://github.com/rememberlenny/samsa.git#master",
     "styled-components": "^5.1.1"
   },
   "devDependencies": {

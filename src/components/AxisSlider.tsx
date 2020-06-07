@@ -1,6 +1,6 @@
+// @ts-nocheck
+
 import React, {useState, useContext} from 'react';
-import {AppContext} from '../AppContext';
-import {Types} from '../reducers';
 import Slider from 'react-rangeslider';
 import styled from 'styled-components';
 import 'react-rangeslider/lib/index.css';
@@ -86,12 +86,10 @@ const AxisSliderWrapper = styled.div`
 
 function AxisSlider({name, tag, min, defaultValue, max}: AxisSliderProps) {
     const [current, setCurrent] = useState(defaultValue);
-    const {state, dispatch} = useContext(AppContext);
 
     const onChange = (newValue: number) => {
         setCurrent(newValue);
         const payload = {[tag]: newValue};
-        dispatch({type: Types.UpdateAxis, payload});
     };
 
     return (

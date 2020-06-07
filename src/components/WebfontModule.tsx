@@ -1,5 +1,6 @@
-import React, {useContext} from 'react';
-import {AppContext} from '../AppContext';
+// @ts-nocheck
+
+import React from 'react';
 import styled from 'styled-components';
 
 const WebfontWrapper = styled.div`
@@ -12,14 +13,12 @@ const WebfontText = styled.div`
     color: #acacac;
     font-size: 32px;
     font-family: 'Inter', sans-serif;
-    font-variation-settings: ${props => props.axesCss};
+    font-variation-settings: ${(props) => props.axesCss};
 `;
 
 function WebfontModule() {
-    const {state} = useContext(AppContext);
-
     const axes = Object.keys(state.axisData);
-    const axisValues = axes.map(axis => {
+    const axisValues = axes.map((axis) => {
         return `'${axis}' ${state.axisData[axis]}`;
     });
     const axesCss = axisValues.join(', ');
