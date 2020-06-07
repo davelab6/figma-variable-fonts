@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 import { IState } from "../store/configStore";
-import { todos } from "./todosReducer";
+import { fonts } from "./fontDataReducer";
 
 export const initState: IState = {
-    todos: [],
+    fonts: [],
 };
 
 export const rootReducer = combineReducers({
-    todos,
+    fonts,
 });

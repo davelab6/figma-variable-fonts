@@ -1,19 +1,19 @@
-import { TodoItem } from "../model/TodoItem";
-import { ActionTypes, IInitStoreAction, IAddTodoAction, ICompleteTodoAction } from "./actionTypes";
+import { FontData } from "../model/FontData";
+import { ActionTypes, IInitStoreAction, IAddFontAction, ICompleteFontAction } from "./actionTypes";
 
-export const initStoreAction = (todos: TodoItem[]): IInitStoreAction => {
-    return {type: ActionTypes.INIT_STORE, todos};
+export const initStoreAction = (fonts: FontData[]): IInitStoreAction => {
+    return {type: ActionTypes.INIT_STORE, fonts};
 };
 
-export const addTodoAction = (todo: TodoItem): IAddTodoAction => {
-    return {type: ActionTypes.ADD_TODO_ITEM, todo};
+export const addFontAction = (font: FontData): IAddFontAction => {
+    return {type: ActionTypes.ADD_FONT_ITEM, font};
 };
 
-export const completeTodoAction = (todo: TodoItem): ICompleteTodoAction => {
-    return {type: ActionTypes.COMPLETE_TODO_ITEM, todo};
+export const completeFontAction = (font: FontData): ICompleteFontAction => {
+    return {type: ActionTypes.COMPLETE_FONT_ITEM, font};
 };
 
 export const actionCreators = {
-    addTodoAction,
-    completeTodoAction,
+    addFontAction,
+    completeFontAction,
 };

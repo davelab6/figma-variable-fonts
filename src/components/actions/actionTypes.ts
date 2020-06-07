@@ -1,20 +1,20 @@
 import { Action } from "redux";
-import { TodoItem } from "../model/TodoItem";
+import { FontData } from "../model/FontData";
 
 export const ActionTypes = {
     INIT_STORE: "INIT_STORE",
-    ADD_TODO_ITEM: "ADD_TODO_ITEM",
-    COMPLETE_TODO_ITEM: "COMPLETE_TODO_ITEM",
+    ADD_FONT_ITEM: "ADD_FONT_ITEM",
+    COMPLETE_FONT_ITEM: "COMPLETE_FONT_ITEM",
 };
 
 export interface IInitStoreAction extends Action {
-    todos: TodoItem[];
+    fonts: FontData[];
 }
 
-export interface IAddTodoAction extends Action {
-    todo: TodoItem;
+export interface IAddFontAction extends Action {
+    font: FontData;
 }
 
-export interface ICompleteTodoAction extends Action {
-    todo: TodoItem;
+export interface ICompleteFontAction extends Action {
+    font: FontData;
 }

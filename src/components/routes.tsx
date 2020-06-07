@@ -12,14 +12,6 @@ export const routes: RouteConfig[] = [
         exact: true,
         component: () => (<HomePage />),
     },
-    {
-        path: "/todo",
-        component: () => (<TodoPage />),
-    },
-    {
-        path: "/about",
-        component: () => (<AboutPage />),
-    },
 ];
 
 export const route = (
