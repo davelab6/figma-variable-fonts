@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ModuleWrapper from './layouts/ModuleWrapper';
+import ModuleWrapper from '../layouts/ModuleWrapper';
 
 const AboutModule = () => (
     <ModuleWrapper title="About" open={true}>

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import About from '../AboutModule';
-import Info from '../InfoModule';
-import FontSetup from '../FontSetupModule';
+import About from '../components/AboutModule';
+import Info from '../components/InfoModule';
+import FontSetup from '../components/FontSetupModule';
 
 const Wrapper = styled.div`
     margin: -8px;

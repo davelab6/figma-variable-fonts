@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import ModuleWrapper from './layouts/ModuleWrapper';
+import ModuleWrapper from '../layouts/ModuleWrapper';
 import AxisSlider from './AxisSlider';
 
 function AxesModule() {

@@ -1,12 +1,12 @@
-import { FontData } from "../model/FontData";
-import { ActionTypes, IInitStoreAction, IAddFontAction, ICompleteFontAction } from "./actionTypes";
+import {FontData} from '../model/FontData';
+import {ActionTypes, IInitStoreAction, IFetchFontAction, ICompleteFontAction} from './actionTypes';
 
 export const initStoreAction = (fonts: FontData[]): IInitStoreAction => {
     return {type: ActionTypes.INIT_STORE, fonts};
 };
 
-export const addFontAction = (font: FontData): IAddFontAction => {
-    return {type: ActionTypes.ADD_FONT_ITEM, font};
+export const fetchFontAction = (font: FontData): IFetchFontAction => {
+    return {type: ActionTypes.FETCH_FONT, font};
 };
 
 export const completeFontAction = (font: FontData): ICompleteFontAction => {
@@ -14,6 +14,6 @@ export const completeFontAction = (font: FontData): ICompleteFontAction => {
 };
 
 export const actionCreators = {
-    addFontAction,
+    fetchFontAction,
     completeFontAction,
 };
