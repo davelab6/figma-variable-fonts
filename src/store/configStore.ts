@@ -6,20 +6,20 @@ import {initStoreAction} from '../actions/actions';
 import {rootReducer} from '../reducers/rootReducer';
 
 export interface IState {
-    font: FontData | {};
+    fonts: FontData[];
 }
 
 export const initialState = {
     fontData: {
-        data: FontData,
+        data: {},
         loading: false,
     },
 };
 
 export const initStore = () => {
     return (dispatch: Dispatch<Action>) => {
-        const font: FontData = {};
-        return dispatch(initStoreAction(font));
+        const fonts: FontData[] = [];
+        return dispatch(initStoreAction(fonts));
     };
 };
 
