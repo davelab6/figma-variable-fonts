@@ -1,14 +1,36 @@
-import {Action} from 'redux';
-import {initState} from './rootReducer';
-import * as fontActions from '../actions/actionTypes';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-export const fonts = (state = initState.fonts, action: Action) => {
-    switch (action.type) {
-        case fontActions.ActionTypes.INIT_STORE:
-            return (action as fontActions.IInitStoreAction).fonts;
-        case fontActions.ActionTypes.FETCH_FONT:
-            return (action as fontActions.IInitStoreAction).fonts;
-        default:
-            return state;
-    }
+export interface FontData {
+    fontId: number;
+    data: any;
+    loading: boolean;
+}
+
+interface FontDataList {
+    [key: string]: FontData;
+}
+
+type CurrentFontDataState = {
+    fonts: FontDataList;
+    loading: boolean;
 };
+
+let initialState: CurrentFontDataState = {
+    fonts: {},
+    loading: false,
+};
+
+const fontDataSlice = createSlice({
+    name: 'fontData',
+    initialState,
+    reducers: {
+        initStore(state) {
+            state.fonts = {};
+            state.loading = false;
+        },
+    },
+});
+
+export const {initStore} = fontDataSlice.actions;
+
+export default fontDataSlice.reducer;

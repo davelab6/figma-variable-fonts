@@ -1,11 +1,10 @@
-import {combineReducers} from 'redux';
-import {IState} from '../store/configStore';
-import {fonts} from './fontDataReducer';
+import {combineReducers} from '@reduxjs/toolkit';
+import fontsDataReducer from './fontDataReducer';
 
-export const initState: IState = {
-    fonts: [],
-};
-
-export const rootReducer = combineReducers({
-    fonts,
+const rootReducer = combineReducers({
+    fontsData: fontsDataReducer,
 });
+
+export type RootState = ReturnType<typeof rootReducer>;
+
+export default rootReducer;
