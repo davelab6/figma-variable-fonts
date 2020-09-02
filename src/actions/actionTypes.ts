@@ -8,7 +8,7 @@ export const ActionTypes = {
 };
 
 export interface IInitStoreAction extends Action {
-    fonts: FontData[];
+    font: FontData;
 }
 
 export interface IFetchFontAction extends Action {

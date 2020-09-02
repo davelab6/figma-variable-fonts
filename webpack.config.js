@@ -12,22 +12,11 @@ module.exports = {
     },
     mode: 'development',
     context: resolve(__dirname, 'src'),
-    entry: [
-        'webpack-dev-server/client?http://localhost:8080',
-        // bundle the client for webpack-dev-server
-        // and connect to the provided endpoint
-        'webpack/hot/only-dev-server',
-        // bundle the client for hot reloading
-        // only- means to only hot reload for successful updates
-        './index.tsx'
-        // the entry point of our app
-    ],
+    entry:  './index.tsx',
     output: {
-        filename: 'hotloader.js',
-        // the output bundle
-        path: resolve(__dirname, 'dist'), 
-        publicPath: '/'
-        // necessary for HMR to know where to load the hot update chunks
+        path: resolve(__dirname, 'dist'),
+        publicPath: '/',
+        filename: 'bundle.js'
     },
     devtool: 'inline-source-map',
     resolve: {

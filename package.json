@@ -4,7 +4,6 @@
   "description": "Figma plugin for rendering variable fonts",
   "scripts": {
     "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "start": "webpack-dev-server",
     "test": "jest",
     "plugin:build": "webpack --mode=production --config webpack.figma.config.js",
     "clean": "rd /s/q built",

@@ -3,7 +3,10 @@ import {IState} from '../store/configStore';
 import {fonts} from './fontDataReducer';
 
 export const initState: IState = {
-    fonts: [],
+    fonts: {
+        data: {},
+        loading: false,
+    },
 };
 
 export const rootReducer = combineReducers({
