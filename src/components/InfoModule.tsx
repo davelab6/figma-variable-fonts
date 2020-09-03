@@ -3,7 +3,7 @@
 import React, {useContext} from 'react';
 import {useSelector} from 'react-redux';
 import ModuleWrapper from '../layouts/ModuleWrapper';
-import FontAxis from '../model/FontAxis';
+import {FontAxis} from '../features/fontDataReducer/FontAxis';
 
 function InfoModule() {
     const names: FontAxis[] = useSelector((state) => state.fontData) || [];

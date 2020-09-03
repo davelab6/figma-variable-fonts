@@ -3,7 +3,7 @@ import {HashRouter} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 
 import {route} from './routes';
-import {updateSelection} from '../reducers/activeTextReducer';
+import {updateSelection} from '../features/activeText/activeTextSlice';
 
 const App = () => {
     const dispatch = useDispatch();

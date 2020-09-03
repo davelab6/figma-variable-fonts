@@ -4,7 +4,7 @@ import About from '../components/AboutModule';
 import Info from '../components/InfoModule';
 import FontSetup from '../components/FontSetupModule';
 import {useSelector} from 'react-redux';
-import {RootState} from '../reducers/rootReducer';
+import {RootState} from '../store/rootReducer';
 import WebfontModule from '../components/WebfontModule';
 
 const Wrapper = styled.div`

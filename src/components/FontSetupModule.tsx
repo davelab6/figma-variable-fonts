@@ -1,10 +1,11 @@
 // @ts-nocheck
 
 import React, {useContext, useEffect} from 'react';
-import ModuleWrapper from '../layouts/ModuleWrapper';
-
 import {SamsaFont} from 'samsa';
 import {useDispatch} from 'react-redux';
+
+import ModuleWrapper from '../layouts/ModuleWrapper';
+import {addFontFamily, updateFontAxis} from '../features/fontData/fontDataSlice';
 
 function FontSetupModule() {
     const dispatch = useDispatch();
@@ -14,14 +15,13 @@ function FontSetupModule() {
             url: fontUrl,
             fontFamily: 'DefaultFont',
             callback: (data: {[key: string]: any}) => {
-                const payload = {fontData: data};
-                dispatch({type: Types.Update, payload});
+                dispatch(addFontFamily({fontData: data}));
 
                 const axisDefaults = {};
                 data.axes.forEach((axis) => {
                     axisDefaults[axis.tag] = axis.default;
                 });
-                dispatch({type: Types.ResetAxis, payload: axisDefaults});
+                dispatch(updateFontAxis(axisDefaults));
             },
         };
         const vf = new SamsaFont(samsaOptions);
