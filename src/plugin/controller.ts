@@ -1,16 +1,5 @@
 // @ts-nocheck
 
-figma.showUI(__html__, {
-    width: 300,
-    height: 600,
-});
-
-figma.on('selectionchange', () => {
-    figma.ui.postMessage({
-        payload: onSelectChange(),
-    });
-});
-
 function onSelectChange() {
     if (figma.currentPage.selection.length !== 1) {
         return {type: 'selected-change', status: 'error', message: 'Select a single node.'};
@@ -23,3 +12,24 @@ function onSelectChange() {
 
     return {type: 'selected-change', status: 'success', content: node.characters, fontSize: node.fontSize};
 }
+
+function updateUiSelection() {
+    figma.ui.postMessage({
+        payload: onSelectChange(),
+    });
+}
+
+figma.on('selectionchange', () => {
+    updateUiSelection();
+});
+
+figma.ui.onmessage = (msg) => {
+    if (msg.type === 'on-ui-loaded') {
+        updateUiSelection();
+    }
+};
+
+figma.showUI(__html__, {
+    width: 300,
+    height: 600,
+});

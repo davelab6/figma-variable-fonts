@@ -15,13 +15,14 @@ function FontSetupModule() {
             url: fontUrl,
             fontFamily: 'DefaultFont',
             callback: (data: {[key: string]: any}) => {
-                dispatch(addFontFamily({fontData: data}));
+                console.log('data', data);
+                // dispatch(addFontFamily({fontData: data}));
 
-                const axisDefaults = {};
-                data.axes.forEach((axis) => {
-                    axisDefaults[axis.tag] = axis.default;
-                });
-                dispatch(updateFontAxis(axisDefaults));
+                // const axisDefaults = {};
+                // data.axes.forEach((axis) => {
+                //     axisDefaults[axis.tag] = axis.default;
+                // });
+                // dispatch(updateFontAxis(axisDefaults));
             },
         };
         const vf = new SamsaFont(samsaOptions);
