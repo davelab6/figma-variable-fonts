@@ -4,27 +4,29 @@ import React, {useContext, useEffect} from 'react';
 import ModuleWrapper from '../layouts/ModuleWrapper';
 
 import {SamsaFont} from 'samsa';
+import {useDispatch} from 'react-redux';
 
 function FontSetupModule() {
-    // useEffect(() => {
-    //     const fontUrl = 'https://cdn.jsdelivr.net/gh/google/fonts@master/ofl/inter/Inter[slnt,wght].ttf';
-    //     const samsaOptions = {
-    //         url: fontUrl,
-    //         fontFamily: 'DefaultFont',
-    //         callback: (data: {[key: string]: any}) => {
-    //             const payload = {fontData: data};
-    //             dispatch({type: Types.Update, payload});
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const fontUrl = 'https://cdn.jsdelivr.net/gh/google/fonts@master/ofl/inter/Inter[slnt,wght].ttf';
+        const samsaOptions = {
+            url: fontUrl,
+            fontFamily: 'DefaultFont',
+            callback: (data: {[key: string]: any}) => {
+                const payload = {fontData: data};
+                dispatch({type: Types.Update, payload});
 
-    //             const axisDefaults = {};
-    //             data.axes.forEach((axis) => {
-    //                 axisDefaults[axis.tag] = axis.default;
-    //             });
-    //             dispatch({type: Types.ResetAxis, payload: axisDefaults});
-    //         },
-    //     };
-    //     const vf = new SamsaFont(samsaOptions);
-    //     console.log('vf', vf);
-    // }, []);
+                const axisDefaults = {};
+                data.axes.forEach((axis) => {
+                    axisDefaults[axis.tag] = axis.default;
+                });
+                dispatch({type: Types.ResetAxis, payload: axisDefaults});
+            },
+        };
+        const vf = new SamsaFont(samsaOptions);
+        console.log('vf', vf);
+    }, []);
 
     return (
         <ModuleWrapper title="Font setup" open={true}>

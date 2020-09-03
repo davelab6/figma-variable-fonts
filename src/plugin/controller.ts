@@ -2,7 +2,7 @@
 
 figma.showUI(__html__, {
     width: 300,
-    height: 900,
+    height: 600,
 });
 
 figma.on('selectionchange', () => {
