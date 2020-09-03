@@ -10,7 +10,7 @@ const App = () => {
 
     useEffect(() => {
         window.addEventListener('message', (event) => {
-            if (event.data.pluginMessage.type === 'selected-change') {
+            if (event.data.pluginMessage.payload.type === 'selected-change') {
                 const {payload} = event.data.pluginMessage;
                 dispatch(updateSelection({...payload}));
             }

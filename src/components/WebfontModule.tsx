@@ -16,18 +16,17 @@ const WebfontText = styled.div`
     font-variation-settings: ${(props) => props.axesCss};
 `;
 
-function WebfontModule() {
-    const axes = Object.keys(state.axisData);
-    const axisValues = axes.map((axis) => {
-        return `'${axis}' ${state.axisData[axis]}`;
-    });
-    const axesCss = axisValues.join(', ');
+function WebfontModule(props) {
+    // const axes = Object.keys(state.axisData);
+    // const axisValues = axes.map((axis) => {
+    //     return `'${axis}' ${state.axisData[axis]}`;
+    // });
+    // const axesCss = axisValues.join(', ');
+    const axesCss = '';
 
     return (
         <WebfontWrapper>
-            <WebfontText axesCss={axesCss} contenteditable="true">
-                AaBbCc
-            </WebfontText>
+            <WebfontText axesCss={axesCss}>{props.children}</WebfontText>
         </WebfontWrapper>
     );
 }
