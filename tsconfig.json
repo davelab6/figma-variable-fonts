@@ -21,8 +21,9 @@
         "noImplicitAny": true,
         "strictNullChecks": true,
         "noUnusedLocals": true,
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
     },
+    "indent": [true, "spaces", 2],
     "include": [
         "./src/**/*"
     ],

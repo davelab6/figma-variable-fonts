@@ -1,28 +1,23 @@
-import * as React from 'react';
+import React, {useEffect} from 'react';
 import {HashRouter} from 'react-router-dom';
-import {Provider} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import {route} from './routes';
-import store from '../store/configStore';
+import {updateSelection} from '../reducers/activeTextReducer';
 
-class App extends React.Component<{}, {}> {
-    constructor(props: any) {
-        super(props);
+const App = () => {
+    const dispatch = useDispatch();
 
+    useEffect(() => {
         window.addEventListener('message', (event) => {
-            console.log('Success', event);
+            if (event.data.pluginMessage.type === 'selected-change') {
+                const {payload} = event.data.pluginMessage;
+                dispatch(updateSelection({...payload}));
+            }
         });
-    }
-    public render(): JSX.Element {
-        parent.postMessage({pluginMessage: {type: 'get-selected-text'}}, '*');
+    }, []);
 
-        console.log('store', store);
-        return (
-            <Provider store={store}>
-                <HashRouter children={route} />
-            </Provider>
-        );
-    }
-}
+    return <HashRouter children={route} />;
+};
 
 export default App;
