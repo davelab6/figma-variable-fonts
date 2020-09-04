@@ -18,7 +18,7 @@ const HomePage = () => {
             <Info />
             <FontSetup />
             <About />
-            {status == 'success' && <WebfontModule>{content}</WebfontModule>}
+            {status == 'success' ? <WebfontModule>{content}</WebfontModule> : <>Select a single text node</>}
         </Wrapper>
     );
 };

@@ -27,6 +27,7 @@
     "@types/react-rangeslider": "^2.2.2",
     "antd": "^4.2.0",
     "axios": "^0.19.2",
+    "fontkit": "^1.8.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-rangeslider": "^2.2.0",

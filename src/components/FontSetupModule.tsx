@@ -16,7 +16,13 @@ function FontSetupModule() {
             fontFamily: 'DefaultFont',
             callback: (data: {[key: string]: any}) => {
                 console.log('data', data);
-                // dispatch(addFontFamily({fontData: data}));
+                const fontData = {
+                    instances: data.instances,
+                    axes: data.axes,
+                    filename: data.filename,
+                    names: data.names,
+                };
+                dispatch(addFontFamily(fontData));
 
                 // const axisDefaults = {};
                 // data.axes.forEach((axis) => {
