@@ -2,6 +2,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import {useSelector} from 'react-redux';
 
 const WebfontWrapper = styled.div`
     background: #f7f7f7;
@@ -17,12 +18,16 @@ const WebfontText = styled.div`
 `;
 
 function WebfontModule(props) {
-    // const axes = Object.keys(state.axisData);
-    // const axisValues = axes.map((axis) => {
-    //     return `'${axis}' ${state.axisData[axis]}`;
-    // });
-    // const axesCss = axisValues.join(', ');
-    const axesCss = '';
+    const {activeFont, fonts} = useSelector((state: RootState) => state.fontData);
+    const {content} = useSelector((state: RootState) => state.activeText);
+
+    if (!activeFont) {
+        return null;
+    }
+
+    const axes = Object.keys(activeFont.axes);
+    const axisValues = axes.map((axisName) => `'${axisName}' ${activeFont.axes[axisName]}`);
+    const axesCss = axisValues.join(', ');
 
     return (
         <WebfontWrapper>
