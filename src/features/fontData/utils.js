@@ -35,10 +35,8 @@ export const loadFontForOutput = (url, callback) => {
     });
 };
 
-export const getSVG = (font, axes) => {
+export const getSVG = (font, axes, text) => {
     const xmlns = 'http://www.w3.org/2000/svg';
-
-    const text = 'YEAHgooo';
 
     try {
         font = font.getVariation(axes);
@@ -92,7 +90,7 @@ export const getSVG = (font, axes) => {
 
 export const createFigmaGlyph = (text, axes, fontUrl) => {
     loadFontForOutput(fontUrl, function (font) {
-        const svgPathData = getSVG(font, axes);
+        const svgPathData = getSVG(font, axes, text);
         console.log('svgPathData', svgPathData);
         window.parent.postMessage(
             {
