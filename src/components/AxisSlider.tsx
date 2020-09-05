@@ -4,8 +4,8 @@ import React, {useState, useContext} from 'react';
 import Slider from 'react-rangeslider';
 import styled from 'styled-components';
 import 'react-rangeslider/lib/index.css';
-import {useDispatch} from 'react-redux';
-import {updateActiveFontAxis} from '../features/fontData/fontDataSclie';
+import {useDispatch, useSelector} from 'react-redux';
+import {updateActiveFontAxis} from '../features/fontData/fontDataSlice';
 
 type AxisSliderProps = {
     tag: string;
@@ -86,13 +86,13 @@ const AxisSliderWrapper = styled.div`
     margin-top: 8px;
 `;
 
-function AxisSlider({name, tag, min, current: recentCurrent, max}: AxisSliderProps) {
+function AxisSlider({name, tag, min, current, max}: AxisSliderProps) {
     const dispatch = useDispatch();
     const {activeFont, fonts, loading} = useSelector((state: RootState) => state.fontData);
 
     const onChange = (newValue: number) => {
         const payload = {axisName: tag, value: newValue};
-        updateActiveFontAxis(payload);
+        dispatch(updateActiveFontAxis(payload));
     };
 
     return (
@@ -107,7 +107,7 @@ function AxisSlider({name, tag, min, current: recentCurrent, max}: AxisSliderPro
                 </SliderLabelsRight>
             </SliderLabels>
             <SliderRow>
-                <Slider tooltip={false} min={min} max={max} value={recentCurrent} onChange={onChange} />
+                <Slider tooltip={false} min={min} max={max} value={current} onChange={onChange} />
             </SliderRow>
         </AxisSliderWrapper>
     );
