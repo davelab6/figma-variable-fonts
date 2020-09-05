@@ -23,7 +23,9 @@
         "noUnusedLocals": true,
         "allowSyntheticDefaultImports": true,
     },
-    "indent": [true, "spaces", 2],
+    "ter-indent": [
+        true, 2, {"SwitchCase": true}
+    ],
     "include": [
         "./src/**/*"
     ],

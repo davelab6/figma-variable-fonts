@@ -12,7 +12,11 @@ const App = () => {
         window.parent.postMessage({pluginMessage: {type: 'on-ui-loaded'}}, '*');
 
         window.addEventListener('message', (event) => {
-            if (event.data.pluginMessage.payload.type === 'selected-change') {
+            if (
+                event.data.pluginMessage &&
+                event.data.pluginMessage.payload &&
+                event.data.pluginMessage.payload.type === 'selected-change'
+            ) {
                 const {payload} = event.data.pluginMessage;
                 dispatch(updateSelection({...payload}));
             }
