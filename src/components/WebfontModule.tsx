@@ -13,7 +13,7 @@ const WebfontWrapper = styled.div`
 const WebfontText = styled.div`
     color: #acacac;
     font-size: 32px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter var experimental', sans-serif;
     font-variation-settings: ${(props) => props.axesCss};
 `;
 
