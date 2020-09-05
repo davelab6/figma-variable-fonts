@@ -7,6 +7,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../store/rootReducer';
 import WebfontModule from '../components/WebfontModule';
 import AxesModule from '../components/AxesModule';
+import CanvasActions from '../components/CanvasActions';
 
 const Wrapper = styled.div`
     margin: -8px;
@@ -19,6 +20,7 @@ const HomePage = () => {
             <Info />
             <FontSetup />
             <AxesModule />
+            <CanvasActions />
             {status == 'success' ? <WebfontModule>{content}</WebfontModule> : <>Select a single text node</>}
             <About />
         </Wrapper>

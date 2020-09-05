@@ -13,7 +13,6 @@ function AxesModule() {
         return <></>;
     }
 
-    console.log('fonts[activeFont.fontName]', fonts[activeFont.fontName]);
     const currentFontAxes = fonts[activeFont.fontName].axes;
 
     const displayAxes = () => {
