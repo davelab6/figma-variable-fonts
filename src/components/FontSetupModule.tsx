@@ -3,7 +3,6 @@
 import React, {useContext, useEffect} from 'react';
 import {SamsaFont} from 'samsa';
 import {useDispatch} from 'react-redux';
-import fontkit from 'fontkit-browserified';
 import ModuleWrapper from '../layouts/ModuleWrapper';
 import {addFontFamily, updateActiveFont, updateFontAxis} from '../features/fontData/fontDataSlice';
 

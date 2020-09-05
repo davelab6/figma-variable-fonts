@@ -1,3 +1,5 @@
+import fontkit from 'fontkit-browserified';
+
 export const openURL = function (url, callback) {
     let font = null;
     const xhr = new XMLHttpRequest();
