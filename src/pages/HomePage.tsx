@@ -6,6 +6,7 @@ import FontSetup from '../components/FontSetupModule';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/rootReducer';
 import WebfontModule from '../components/WebfontModule';
+import AxesModule from '../components/AxesModule';
 
 const Wrapper = styled.div`
     margin: -8px;
@@ -17,8 +18,9 @@ const HomePage = () => {
         <Wrapper>
             <Info />
             <FontSetup />
-            <About />
+            <AxesModule />
             {status == 'success' ? <WebfontModule>{content}</WebfontModule> : <>Select a single text node</>}
+            <About />
         </Wrapper>
     );
 };

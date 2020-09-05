@@ -84,8 +84,8 @@ const AxisSliderWrapper = styled.div`
     margin-top: 8px;
 `;
 
-function AxisSlider({name, tag, min, defaultValue, max}: AxisSliderProps) {
-    const [current, setCurrent] = useState(defaultValue);
+function AxisSlider({name, tag, min, current: recentCurrent, max}: AxisSliderProps) {
+    const [current, setCurrent] = useState(recentCurrent);
 
     const onChange = (newValue: number) => {
         setCurrent(newValue);

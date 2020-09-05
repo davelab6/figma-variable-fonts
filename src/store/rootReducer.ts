@@ -1,10 +1,10 @@
 import {combineReducers} from '@reduxjs/toolkit';
 
-import fontsDataReducer from '../features/fontData/fontDataSlice';
+import fontDataReducer from '../features/fontData/fontDataSlice';
 import activeTextReducer from '../features/activeText/activeTextSlice';
 
 const rootReducer = combineReducers({
-    fontsData: fontsDataReducer,
+    fontData: fontDataReducer,
     activeText: activeTextReducer,
 });
 

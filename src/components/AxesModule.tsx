@@ -1,20 +1,27 @@
 // @ts-nocheck
 
 import React from 'react';
+import {useSelector} from 'react-redux';
 
 import ModuleWrapper from '../layouts/ModuleWrapper';
 import AxisSlider from './AxisSlider';
 
 function AxesModule() {
-    const axes = [];
-    // const axes = state.fontData.data?.axes;
-    const displayAxes = (axes) => {
-        return [].map((axis, index) => {
-            // return axes.map((axis, index) => {
-            //     const {min, max, tag, default: defaultValue, name} = axis;
+    const {activeFont, fonts, loading} = useSelector((state: RootState) => state.fontData);
+
+    if (!activeFont || !activeFont.fontName || !fonts[activeFont.fontName] || !fonts[activeFont.fontName].axes) {
+        return <></>;
+    }
+
+    console.log('fonts[activeFont.fontName]', fonts[activeFont.fontName]);
+    const currentFontAxes = fonts[activeFont.fontName].axes;
+
+    const displayAxes = () => {
+        return currentFontAxes.map((axis, index) => {
+            const {min, max, tag, name} = axis;
             return (
                 <div key={index}>
-                    <AxisSlider name={name} tag={tag} min={min} defaultValue={defaultValue} max={max} />
+                    <AxisSlider name={name} tag={tag} min={min} current={activeFont.axes[tag]} max={max} />
                 </div>
             );
         });
@@ -22,7 +29,7 @@ function AxesModule() {
 
     return (
         <ModuleWrapper title="Axes" open={true}>
-            {axes.length > 0 && displayAxes(axes)}
+            {Object.keys(currentFontAxes).length > 0 && displayAxes()}
         </ModuleWrapper>
     );
 }

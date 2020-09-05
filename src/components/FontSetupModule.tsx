@@ -5,7 +5,7 @@ import {SamsaFont} from 'samsa';
 import {useDispatch} from 'react-redux';
 import fontkit from 'fontkit-browserified';
 import ModuleWrapper from '../layouts/ModuleWrapper';
-import {addFontFamily, updateFontAxis} from '../features/fontData/fontDataSlice';
+import {addFontFamily, updateActiveFont, updateFontAxis} from '../features/fontData/fontDataSlice';
 
 const openURL = function (url, callback) {
     let font = null;
@@ -128,12 +128,24 @@ function FontSetupModule() {
                     axes: data.axes,
                     filename: data.filename,
                     names: data.names,
+                    fontName: data.names[6],
                 };
                 dispatch(addFontFamily(fontData));
+                const axes = {};
+                data.axes.forEach((axis) => {
+                    axes[axis.tag] = axis.default;
+                });
+                const activeFont = {
+                    fontName: data.names[6],
+                    variantName: 'Custom',
+                    axes,
+                };
+                console.log('activeFont', activeFont);
+                dispatch(updateActiveFont(activeFont));
 
-                const text = 'go go go';
-                const axes = {wght: 900}; // UPDATE
-                createFigmaGlyph(text, axes, fontUrl);
+                // const text = 'go go go';
+                // const axes = {wght: 900}; // UPDATE
+                // createFigmaGlyph(text, axes, fontUrl);
                 // const axisDefaults = {};
                 // data.axes.forEach((axis) => {
                 //     axisDefaults[axis.tag] = axis.default;

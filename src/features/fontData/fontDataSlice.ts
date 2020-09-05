@@ -42,9 +42,8 @@ interface ActiveAxis {
 }
 
 interface ActiveFont {
-    name: string;
-    type: string;
-    fvs: FontAxisAssignment;
+    fontName: string;
+    variantName: string;
     axes: {[key: string]: ActiveAxis};
 }
 
@@ -72,16 +71,27 @@ const fontDataSlice = createSlice({
     name: 'fontData',
     initialState,
     reducers: {
-        updateFontAxis(state, payload: PayloadAction<FontAxisData>) {
-            const {axes} = payload;
+        updateFontAxis(state, action: PayloadAction<FontAxisData>) {
+            const {axes} = action.payload;
             if (state.activeFont !== null) {
                 axes.forEach((axis) => {
                     state.activeFont.axes[axis.tag].current = axis.current;
                 });
             }
         },
-        addFontFamily(state, payload: PayloadAction<FontFamilyData>) {
-            const {fontUrl, fontName, names, filename, axes, instances} = payload;
+        updateActiveFont(state, action: PayloadAction<ActiveFont>) {
+            const {fontName, variantName, axes} = action.payload;
+            state.activeFont = {
+                fontName,
+                variantName,
+                axes,
+                // axes: {
+                //     [key: string]: ActiveAxis
+                // };
+            };
+        },
+        addFontFamily(state, action: PayloadAction<FontFamilyData>) {
+            const {fontUrl, fontName, names, filename, axes, instances} = action.payload;
             state.fonts[fontName] = {
                 fontUrl,
                 names,
@@ -102,6 +112,6 @@ const fontDataSlice = createSlice({
     },
 });
 
-export const {resetStore, updateFontAxis, addFontFamily} = fontDataSlice.actions;
+export const {addFontFamily, resetStore, updateActiveFont, updateFontAxis} = fontDataSlice.actions;
 
 export default fontDataSlice.reducer;
