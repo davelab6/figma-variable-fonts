@@ -71,13 +71,9 @@ const fontDataSlice = createSlice({
     name: 'fontData',
     initialState,
     reducers: {
-        updateFontAxis(state, action: PayloadAction<FontAxisData>) {
-            const {axes} = action.payload;
-            if (state.activeFont !== null) {
-                axes.forEach((axis) => {
-                    state.activeFont.axes[axis.tag].current = axis.current;
-                });
-            }
+        updateActiveFontAxis(state, action: PayloadAction<FontAxisData>) {
+            const {axisName, value} = action.payload;
+            state.activeFont.axes[axisName] = value;
         },
         updateActiveFont(state, action: PayloadAction<ActiveFont>) {
             const {fontName, variantName, axes} = action.payload;
@@ -85,9 +81,6 @@ const fontDataSlice = createSlice({
                 fontName,
                 variantName,
                 axes,
-                // axes: {
-                //     [key: string]: ActiveAxis
-                // };
             };
         },
         addFontFamily(state, action: PayloadAction<FontFamilyData>) {
@@ -112,6 +105,6 @@ const fontDataSlice = createSlice({
     },
 });
 
-export const {addFontFamily, resetStore, updateActiveFont, updateFontAxis} = fontDataSlice.actions;
+export const {addFontFamily, resetStore, updateActiveFont, updateActiveFontAxis} = fontDataSlice.actions;
 
 export default fontDataSlice.reducer;

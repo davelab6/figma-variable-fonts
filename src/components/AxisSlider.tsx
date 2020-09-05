@@ -4,6 +4,8 @@ import React, {useState, useContext} from 'react';
 import Slider from 'react-rangeslider';
 import styled from 'styled-components';
 import 'react-rangeslider/lib/index.css';
+import {useDispatch} from 'react-redux';
+import {updateActiveFontAxis} from '../features/fontData/fontDataSclie';
 
 type AxisSliderProps = {
     tag: string;
@@ -85,11 +87,12 @@ const AxisSliderWrapper = styled.div`
 `;
 
 function AxisSlider({name, tag, min, current: recentCurrent, max}: AxisSliderProps) {
-    const [current, setCurrent] = useState(recentCurrent);
+    const dispatch = useDispatch();
+    const {activeFont, fonts, loading} = useSelector((state: RootState) => state.fontData);
 
     const onChange = (newValue: number) => {
-        setCurrent(newValue);
-        const payload = {[tag]: newValue};
+        const payload = {axisName: tag, value: newValue};
+        updateActiveFontAxis(payload);
     };
 
     return (
@@ -104,7 +107,7 @@ function AxisSlider({name, tag, min, current: recentCurrent, max}: AxisSliderPro
                 </SliderLabelsRight>
             </SliderLabels>
             <SliderRow>
-                <Slider tooltip={false} min={min} max={max} value={current} onChange={onChange} />
+                <Slider tooltip={false} min={min} max={max} value={recentCurrent} onChange={onChange} />
             </SliderRow>
         </AxisSliderWrapper>
     );
