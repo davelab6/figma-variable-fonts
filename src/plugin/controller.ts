@@ -27,7 +27,12 @@ function onSelectChange() {
         };
     }
 
-    return {type: 'selected-change', status: 'success', content: node.characters, fontSize: node.fontSize};
+    return {
+        type: 'selected-change',
+        status: 'success',
+        content: node.characters,
+        fontSize: node.fontSize,
+    };
 }
 
 const setupGlyph = (pathData) => {
@@ -37,7 +42,7 @@ const setupGlyph = (pathData) => {
     node.vectorPaths = [
         {
             windingRule: 'NONZERO',
-            data: pathData.svg,
+            data: addSpaces(pathData.svg),
         },
     ];
 
@@ -51,6 +56,21 @@ const setupGlyph = (pathData) => {
     node.x = figma.viewport.center.x - node.width / 2;
     node.y = figma.viewport.center.y - node.height / 2;
 };
+
+function addSpaces(path) {
+    let newPath = path;
+    newPath = newPath.split('M').join(' M ');
+    newPath = newPath.split('m').join(' m ');
+    newPath = newPath.split('L').join(' L ');
+    newPath = newPath.split('l').join(' l ');
+    newPath = newPath.split('H').join(' H ');
+    newPath = newPath.split('h').join(' h ');
+    newPath = newPath.split('V').join(' V ');
+    newPath = newPath.split('v').join(' v ');
+    newPath = newPath.split('Z').join(' Z ');
+    newPath = newPath.split('  ').join(' ');
+    return newPath.trim();
+}
 
 function updateUiSelection() {
     figma.ui.postMessage({

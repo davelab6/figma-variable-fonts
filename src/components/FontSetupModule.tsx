@@ -97,6 +97,22 @@ function getSVG(font, axes) {
     // return svglines.join("\n");
 }
 
+function createFigmaGlyph(text, axes, fontUrl) {
+    loadFontForOutput(fontUrl, function (font) {
+        const svgPathData = getSVG(font, axes);
+        console.log('svgPathData', svgPathData);
+        window.parent.postMessage(
+            {
+                pluginMessage: {
+                    type: 'render-svg',
+                    payload: {svgPathData},
+                },
+            },
+            '*'
+        );
+    });
+}
+
 function FontSetupModule() {
     const dispatch = useDispatch();
     useEffect(() => {
@@ -107,6 +123,7 @@ function FontSetupModule() {
             callback: (data: {[key: string]: any}) => {
                 console.log('data', data);
                 const fontData = {
+                    fontUrl,
                     instances: data.instances,
                     axes: data.axes,
                     filename: data.filename,
@@ -115,21 +132,8 @@ function FontSetupModule() {
                 dispatch(addFontFamily(fontData));
 
                 const text = 'go go go';
-                loadFontForOutput(fontUrl, function (font) {
-                    const axes = {wght: 200}; // UPDATE
-                    const svgPathData = getSVG(font, axes);
-                    console.log('svgPathData', svgPathData);
-                    window.parent.postMessage(
-                        {
-                            pluginMessage: {
-                                type: 'render-svg',
-                                payload: {svgPathData},
-                            },
-                        },
-                        '*'
-                    );
-                });
-
+                const axes = {wght: 900}; // UPDATE
+                createFigmaGlyph(text, axes, fontUrl);
                 // const axisDefaults = {};
                 // data.axes.forEach((axis) => {
                 //     axisDefaults[axis.tag] = axis.default;

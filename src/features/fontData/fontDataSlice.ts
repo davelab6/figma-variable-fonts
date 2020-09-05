@@ -27,6 +27,7 @@ export interface FontAxis {
 interface FontFamilyData {
     instances: FontInstance[];
     axes: FontAxis[];
+    fontUrl: string;
     filename: string;
     names: string[];
     fontFamilyName: string;
@@ -80,8 +81,9 @@ const fontDataSlice = createSlice({
             }
         },
         addFontFamily(state, payload: PayloadAction<FontFamilyData>) {
-            const {fontName, names, filename, axes, instances} = payload;
+            const {fontUrl, fontName, names, filename, axes, instances} = payload;
             state.fonts[fontName] = {
+                fontUrl,
                 names,
                 filename,
                 axes,
