@@ -36,7 +36,6 @@ function onSelectChange() {
 }
 
 const setupGlyph = (pathData) => {
-    console.log('WHHH');
     const node = figma.createVector();
 
     node.vectorPaths = [
@@ -48,9 +47,15 @@ const setupGlyph = (pathData) => {
 
     node.fills = [{type: 'SOLID', color: {r: 0, g: 0, b: 0}}];
     node.strokeWeight = 0;
+    // node.rotation = 180
 
     node.setPluginData('canvas_text_content', String.fromCharCode(pathData.codePoints));
     node.setPluginData('canvas_font_size', '14');
+    const angle = 0;
+    node.relativeTransform = [
+        [Math.cos(angle), -Math.sin(angle), 0],
+        [-Math.sin(angle), -Math.cos(angle), 0],
+    ];
 
     // Put the node in the center of the viewport so we can see it
     node.x = figma.viewport.center.x - node.width / 2;
@@ -66,6 +71,7 @@ function addSpaces(path) {
     newPath = newPath.split('H').join(' H ');
     newPath = newPath.split('h').join(' h ');
     newPath = newPath.split('V').join(' V ');
+    newPath = newPath.split('Q').join(' Q ');
     newPath = newPath.split('v').join(' v ');
     newPath = newPath.split('Z').join(' Z ');
     newPath = newPath.split('  ').join(' ');
