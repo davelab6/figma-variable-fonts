@@ -40,11 +40,14 @@ interface ActiveAxis {
     name: string;
     tag: string;
 }
+interface ActiveAxes {
+    [key: string]: ActiveAxis;
+}
 
 interface ActiveFont {
     fontName: string;
     variantName: string;
-    axes: {[key: string]: ActiveAxis};
+    axes: ActiveAxes;
 }
 
 interface FontDataList {
@@ -71,6 +74,10 @@ const fontDataSlice = createSlice({
     name: 'fontData',
     initialState,
     reducers: {
+        updateActiveFontAxes(state, action: PayloadAction<ActiveAxes>) {
+            const {axes} = action.payload;
+            state.activeFont.axes = axes;
+        },
         updateActiveFontAxis(state, action: PayloadAction<FontAxisData>) {
             const {axisName, value} = action.payload;
             state.activeFont.axes[axisName] = value;
@@ -105,6 +112,12 @@ const fontDataSlice = createSlice({
     },
 });
 
-export const {addFontFamily, resetStore, updateActiveFont, updateActiveFontAxis} = fontDataSlice.actions;
+export const {
+    updateActiveFontAxes,
+    addFontFamily,
+    resetStore,
+    updateActiveFont,
+    updateActiveFontAxis,
+} = fontDataSlice.actions;
 
 export default fontDataSlice.reducer;

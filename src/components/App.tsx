@@ -1,12 +1,15 @@
 import React, {useEffect} from 'react';
 import {HashRouter} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {route} from './routes';
 import {updateSelection} from '../features/activeText/activeTextSlice';
+import {updateActiveFont, updateActiveFontAxes} from '../features/fontData/fontDataSlice';
 
 const App = () => {
     const dispatch = useDispatch();
+
+    const {activeFont, fonts} = useSelector((state: RootState) => state.fontData);
 
     useEffect(() => {
         window.parent.postMessage({pluginMessage: {type: 'on-ui-loaded'}}, '*');
@@ -17,7 +20,10 @@ const App = () => {
                 const {payload} = pm;
                 dispatch(updateSelection({...payload}));
                 console.log('payload', payload);
-                if (payload.isVf === 'true') {
+                if (payload.isVariableFontNode === 'true') {
+                    if (activeFont.fontName === payload.fontName) {
+                        dispatch(updateActiveFontAxes({axes: JSON.parse(payload.axes)}));
+                    }
                 }
             }
         });

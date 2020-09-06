@@ -15,7 +15,7 @@ function onSelectChange() {
             type: 'selected-change',
             status: 'success',
             axes: JSON.parse(node.getPluginData('node_axes')),
-            activeFont: node.getPluginData('node_active_font'),
+            fontName: node.getPluginData('node_font_name'),
             content: node.getPluginData('node_text_content'),
             fontSize: node.getPluginData('node_font_size'),
             isVariableFontNode: node.getPluginData('is_variable_font'),
@@ -53,7 +53,7 @@ const setupGlyph = (pathData) => {
     // node.rotation = 180
 
     node.setPluginData('is_variable_font', 'true');
-    node.setPluginData('node_active_font', pathData.activeFont);
+    node.setPluginData('node_font_name', pathData.fontName);
     node.setPluginData('node_axes', JSON.stringify(pathData.axes));
     node.setPluginData('node_text_content', String.fromCharCode(pathData.codePoints));
     node.setPluginData('node_font_size', '14');
