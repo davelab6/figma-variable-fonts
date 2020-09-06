@@ -1,13 +1,7 @@
-// @ts-nocheck
+import {addSpaces, isJsonString} from './utils';
+import {figmaInit} from './figma/init';
 
-function isJsonString(str) {
-    try {
-        JSON.parse(str);
-    } catch (e) {
-        return false;
-    }
-    return true;
-}
+// @ts-nocheck
 
 /**
  * How this works
@@ -19,6 +13,7 @@ function isJsonString(str) {
  */
 function onSelectChange() {
     if (figma.currentPage.selection.length !== 1) {
+        console.log('not 1');
         return {
             type: 'selected-change',
             status: 'error',
@@ -26,10 +21,11 @@ function onSelectChange() {
         };
     }
 
-    console.log('got selection');
     const node = figma.currentPage.selection[0];
+    console.log('node', node);
 
     if (node.getPluginData('node_text_content')) {
+        console.log('node_text_content');
         let axes = '';
         const nodeAxes = node.getPluginData('node_axes');
         if (isJsonString(nodeAxes)) {
@@ -45,9 +41,9 @@ function onSelectChange() {
             isVariableFontNode: node.getPluginData('is_variable_font'),
         };
     }
-    console.log('got selection');
 
     if (node.type !== 'TEXT') {
+        console.log('node not text');
         return {
             type: 'selected-change',
             status: 'error',
@@ -55,12 +51,15 @@ function onSelectChange() {
         };
     }
 
-    return {
-        type: 'selected-change',
-        status: 'success',
-        content: node.characters,
-        fontSize: node.fontSize,
-    };
+    console.log('here we are');
+    if (node.type == 'TEXT') {
+        return {
+            type: 'selected-change',
+            status: 'success',
+            content: node.characters,
+            fontSize: node.fontSize,
+        };
+    }
 }
 
 const setupGlyph = (pathData) => {
@@ -93,22 +92,6 @@ const setupGlyph = (pathData) => {
     node.y = figma.viewport.center.y - node.height / 2;
 };
 
-function addSpaces(path) {
-    let newPath = path;
-    newPath = newPath.split('M').join(' M ');
-    newPath = newPath.split('m').join(' m ');
-    newPath = newPath.split('L').join(' L ');
-    newPath = newPath.split('l').join(' l ');
-    newPath = newPath.split('H').join(' H ');
-    newPath = newPath.split('h').join(' h ');
-    newPath = newPath.split('V').join(' V ');
-    newPath = newPath.split('Q').join(' Q ');
-    newPath = newPath.split('v').join(' v ');
-    newPath = newPath.split('Z').join(' Z ');
-    newPath = newPath.split('  ').join(' ');
-    return newPath.trim();
-}
-
 function updateUiSelection() {
     const payload = onSelectChange();
     figma.ui.postMessage({
@@ -116,41 +99,41 @@ function updateUiSelection() {
     });
 }
 
-figma.on('selectionchange', () => {
-    updateUiSelection();
-});
-
-figma.ui.onmessage = (msg) => {
-    if (msg.type === 'on-ui-loaded') {
+const setupFigmaEvents = () => {
+    figma.on('selectionchange', () => {
         updateUiSelection();
-    }
+    });
 
-    if (msg.type === 'render-svg') {
-        console.log('payload', msg.payload);
-        const {svgPathData} = msg.payload;
-
-        svgPathData.forEach((pathData) => {
-            setupGlyph(pathData);
-        });
-    }
-
-    if (msg.type === 'update-selected-variable-settings') {
-        console.log('payload', msg.payload);
-        const {svgPathData} = msg.payload;
-        const node = figma.currentPage.selection[0];
-        if (node) {
-            node.setPluginData('node_axes', JSON.stringify(svgPathData[0].axes));
-            node.vectorPaths = [
-                {
-                    windingRule: 'NONZERO',
-                    data: addSpaces(svgPathData[0].svg),
-                },
-            ];
+    figma.ui.onmessage = (msg) => {
+        if (msg.type === 'on-ui-loaded') {
+            updateUiSelection();
         }
-    }
+
+        if (msg.type === 'render-svg') {
+            console.log('payload', msg.payload);
+            const {svgPathData} = msg.payload;
+
+            svgPathData.forEach((pathData) => {
+                setupGlyph(pathData);
+            });
+        }
+
+        if (msg.type === 'update-selected-variable-settings') {
+            console.log('payload', msg.payload);
+            const {svgPathData} = msg.payload;
+            const node = figma.currentPage.selection[0];
+            if (node) {
+                node.setPluginData('node_axes', JSON.stringify(svgPathData[0].axes));
+                node.vectorPaths = [
+                    {
+                        windingRule: 'NONZERO',
+                        data: addSpaces(svgPathData[0].svg),
+                    },
+                ];
+            }
+        }
+    };
 };
 
-figma.showUI(__html__, {
-    width: 300,
-    height: 600,
-});
+setupFigmaEvents();
+figmaInit();
