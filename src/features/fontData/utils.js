@@ -57,7 +57,8 @@ export const getSVG = (font, axes, text) => {
     const paths = [];
     glyphrun.glyphs.forEach((glyph) => {
         console.log('glyph', glyph);
-        paths.push({svg: glyph.path.toSVG(), codePoints: glyph.codePoints});
+        const vfData = axes;
+        paths.push({vfData, svg: glyph.path.toSVG(), codePoints: glyph.codePoints});
         // paths.push('<path transform="translate(' + advwidth + ',0)" d="' + glyph.path.toSVG() + '"/>');
 
         xMin = Math.min(xMin, advwidth + glyph.bbox.minX);

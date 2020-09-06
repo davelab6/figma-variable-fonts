@@ -49,6 +49,8 @@ const setupGlyph = (pathData) => {
     node.strokeWeight = 0;
     // node.rotation = 180
 
+    node.setPluginData('is_variable_font', 'true');
+    node.setPluginData('canvas_vf_data', JSON.stringify(pathData.vfData));
     node.setPluginData('canvas_text_content', String.fromCharCode(pathData.codePoints));
     node.setPluginData('canvas_font_size', '14');
     const angle = 0;
