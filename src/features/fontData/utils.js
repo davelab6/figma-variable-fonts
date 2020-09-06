@@ -102,3 +102,21 @@ export const createFigmaGlyph = (fontName, text, axes, fontUrl) => {
         );
     });
 };
+
+export const updateSelectedVariableSettings = (fontName, text, axes, fontUrl) => {
+    loadFontForOutput(fontUrl, function (font) {
+        const svgPathData = getSVG(fontName, font, axes, text);
+        console.log('svgPathData', svgPathData);
+        window.parent.postMessage(
+            {
+                pluginMessage: {
+                    type: 'update-selected-variable-settings',
+                    payload: {
+                        svgPathData,
+                    },
+                },
+            },
+            '*'
+        );
+    });
+};

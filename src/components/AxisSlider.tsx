@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import 'react-rangeslider/lib/index.css';
 import {useDispatch, useSelector} from 'react-redux';
 import {updateActiveFontAxis} from '../features/fontData/fontDataSlice';
+import {updateSelectedVariableSettings} from '../features/fontData/utils';
 
 type AxisSliderProps = {
     tag: string;
@@ -89,10 +90,16 @@ const AxisSliderWrapper = styled.div`
 function AxisSlider({name, tag, min, current, max}: AxisSliderProps) {
     const dispatch = useDispatch();
     const {activeFont, fonts, loading} = useSelector((state: RootState) => state.fontData);
+    const {status, content} = useSelector((state: RootState) => state.activeText);
 
     const onChange = (newValue: number) => {
         const payload = {axisName: tag, value: newValue};
         dispatch(updateActiveFontAxis(payload));
+
+        if (status === 'success') {
+            const font = fonts[activeFont.fontName];
+            updateSelectedVariableSettings(activeFont.fontName, content, activeFont.axes, font.fontUrl);
+        }
     };
 
     return (

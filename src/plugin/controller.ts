@@ -107,6 +107,21 @@ figma.ui.onmessage = (msg) => {
             setupGlyph(pathData);
         });
     }
+
+    if (msg.type === 'update-selected-variable-settings') {
+        console.log('payload', msg.payload);
+        const {svgPathData} = msg.payload;
+
+        const node = figma.currentPage.selection[0];
+        if (node) {
+            node.vectorPaths = [
+                {
+                    windingRule: 'NONZERO',
+                    data: addSpaces(svgPathData[0].svg),
+                },
+            ];
+        }
+    }
 };
 
 figma.showUI(__html__, {
