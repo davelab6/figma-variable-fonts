@@ -1,4 +1,5 @@
 import fontkit from 'fontkit-browserified';
+import {FIGMA_EVENT_TYPES} from '../../plugin/shared/constants';
 
 export const openURL = function (url, callback) {
   let font = null;
@@ -94,7 +95,7 @@ export const createFigmaGlyph = (fontName, text, axes, fontUrl) => {
     window.parent.postMessage(
       {
         pluginMessage: {
-          type: 'render-svg',
+          type: FIGMA_EVENT_TYPES.RENDER_SVG,
           payload: {svgPathData},
         },
       },
@@ -110,7 +111,7 @@ export const updateSelectedVariableSettings = (fontName, text, axes, fontUrl) =>
     window.parent.postMessage(
       {
         pluginMessage: {
-          type: 'update-selected-variable-settings',
+          type: FIGMA_EVENT_TYPES.UPDATE_SELECTED_VARIABLE_SETTINGS,
           payload: {
             svgPathData,
           },
