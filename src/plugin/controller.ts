@@ -18,7 +18,7 @@ function onSelectChange() {
             activeFont: node.getPluginData('node_active_font'),
             content: node.getPluginData('node_text_content'),
             fontSize: node.getPluginData('node_font_size'),
-            isVf: node.getPluginData('is_variable_font'),
+            isVariableFontNode: node.getPluginData('is_variable_font'),
         };
     }
 
