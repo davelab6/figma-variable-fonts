@@ -91,13 +91,29 @@ function AxisSlider({name, tag, min, current, max}: AxisSliderProps) {
     const dispatch = useDispatch();
     const {activeFont, fonts, loading} = useSelector((state: RootState) => state.fontData);
     const {status, content} = useSelector((state: RootState) => state.activeText);
+    let timeout;
 
     const onChange = (newValue: number) => {
         const payload = {axisName: tag, value: newValue};
         dispatch(updateActiveFontAxis(payload));
+        if (status === 'success') {
+            console.log('no debounce');
+
+            if (timeout) {
+                window.cancelAnimationFrame(timeout);
+            }
+
+            timeout = window.requestAnimationFrame(function () {
+                const font = fonts[activeFont.fontName];
+                updateSelectedVariableSettings(activeFont.fontName, content, activeFont.axes, font.fontUrl);
+            });
+        }
     };
 
     const onChangeComplete = (newValue: number) => {
+        if (timeout) {
+            window.cancelAnimationFrame(timeout);
+        }
         const payload = {axisName: tag, value: newValue};
         if (status === 'success') {
             const font = fonts[activeFont.fontName];
