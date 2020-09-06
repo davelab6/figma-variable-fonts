@@ -1,4 +1,5 @@
 import {isJsonString} from '../shared/utils';
+import {NODE_TYPES} from '../shared/constants';
 
 /**
  * How this works
@@ -39,7 +40,7 @@ export const onSelectChange = () => {
     };
   }
 
-  if (node.type !== 'TEXT') {
+  if (node.type !== NODE_TYPES.TEXT) {
     console.log('node not text');
     return {
       type: 'selected-change',
@@ -49,7 +50,7 @@ export const onSelectChange = () => {
   }
 
   console.log('here we are');
-  if (node.type == 'TEXT') {
+  if (node.type === NODE_TYPES.TEXT) {
     return {
       type: 'selected-change',
       status: 'success',

@@ -1,5 +1,5 @@
-import {setupGlyph} from '../shared/utils';
-import {addSpaces} from '../shared/utils';
+import {setupGlyph, addSpaces} from '../shared/utils';
+import {FIGMA_EVENT_TYPES} from '../shared/constants';
 import {onSelectChange} from './onSelectChange';
 
 export const updateUiSelection = () => {
@@ -15,11 +15,11 @@ export const setupFigmaEvents = () => {
   });
 
   figma.ui.onmessage = (msg) => {
-    if (msg.type === 'on-ui-loaded') {
+    if (msg.type === FIGMA_EVENT_TYPES.ON_UI_LOADED) {
       updateUiSelection();
     }
 
-    if (msg.type === 'render-svg') {
+    if (msg.type === FIGMA_EVENT_TYPES.RENDER_SVG) {
       console.log('payload', msg.payload);
       const {svgPathData} = msg.payload;
 
@@ -28,7 +28,7 @@ export const setupFigmaEvents = () => {
       });
     }
 
-    if (msg.type === 'update-selected-variable-settings') {
+    if (msg.type === FIGMA_EVENT_TYPES.UPDATE_SELECTED_VARIABLE_SETTINGS) {
       console.log('payload', msg.payload);
       const {svgPathData} = msg.payload;
       const node = figma.currentPage.selection[0];
