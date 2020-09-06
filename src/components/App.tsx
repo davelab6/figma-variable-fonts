@@ -9,24 +9,38 @@ import {updateActiveFont, updateActiveFontAxes} from '../features/fontData/fontD
 const App = () => {
     const dispatch = useDispatch();
 
-    const {activeFont, fonts} = useSelector((state: RootState) => state.fontData);
+    const {activeFont} = useSelector((state: RootState) => state.fontData);
 
-    useEffect(() => {
-        window.parent.postMessage({pluginMessage: {type: 'on-ui-loaded'}}, '*');
+    const activeFontName = activeFont ? activeFont.fontName : null;
 
+    const updateActiveAxes = (payload) => {
+        console.log('activeFont', activeFont);
+        if (payload.isVariableFontNode === 'true') {
+            dispatch(
+                updateActiveFontAxes({
+                    fontName: payload.fontName,
+                    axes: JSON.parse(payload.axes),
+                })
+            );
+        }
+    };
+
+    const setupEvents = () => {
         window.addEventListener('message', (event) => {
             const pm = event.data.pluginMessage;
             if (pm && pm.payload && pm.payload.type === 'selected-change') {
                 const {payload} = pm;
                 dispatch(updateSelection({...payload}));
                 console.log('payload', payload);
-                if (payload.isVariableFontNode === 'true') {
-                    if (activeFont.fontName === payload.fontName) {
-                        dispatch(updateActiveFontAxes({axes: JSON.parse(payload.axes)}));
-                    }
-                }
+                updateActiveAxes(payload);
             }
         });
+    };
+
+    useEffect(() => {
+        window.parent.postMessage({pluginMessage: {type: 'on-ui-loaded'}}, '*');
+
+        setupEvents();
     }, [window]);
 
     return <HashRouter children={route} />;
