@@ -1,6 +1,6 @@
 import {setupGlyph, addSpaces} from '../shared/utils';
 import {FIGMA_EVENT_TYPES, NODE_PROPS} from '../shared/constants';
-import {onSelectChange} from './onSelectChange';
+import {onSelectChange} from './onSelection';
 
 export const updateUiSelection = () => {
   const payload = onSelectChange();
