@@ -41,7 +41,7 @@ export const onSelectChange = () => {
   }
 
   if (node.type !== NODE_TYPES.TEXT) {
-    console.log('node not text');
+    console.log('node not text', node);
     return {
       type: FIGMA_EVENT_TYPES.SELECTED_CHANGED,
       status: STATUSES.ERROR,
@@ -49,8 +49,8 @@ export const onSelectChange = () => {
     };
   }
 
-  console.log('here we are');
   if (node.type === NODE_TYPES.TEXT) {
+    console.log('here we are', node);
     return {
       type: FIGMA_EVENT_TYPES.SELECTED_CHANGED,
       status: STATUSES.SUCCESS,
