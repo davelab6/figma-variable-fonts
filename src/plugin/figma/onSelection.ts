@@ -1,5 +1,5 @@
 import {isJsonString} from '../shared/utils';
-import {NODE_TYPES} from '../shared/constants';
+import {NODE_TYPES, FIGMA_EVENT_TYPES} from '../shared/constants';
 
 /**
  * How this works
@@ -13,7 +13,7 @@ export const onSelectChange = () => {
   if (figma.currentPage.selection.length !== 1) {
     console.log('not 1');
     return {
-      type: 'selected-change',
+      type: FIGMA_EVENT_TYPES.SELECTED_CHANGED,
       status: 'error',
       message: 'Select a single node.',
     };
@@ -30,7 +30,7 @@ export const onSelectChange = () => {
       axes = JSON.parse(nodeAxes);
     }
     return {
-      type: 'selected-change',
+      type: FIGMA_EVENT_TYPES.SELECTED_CHANGED,
       status: 'success',
       axes,
       fontName: node.getPluginData('node_font_name'),
@@ -43,7 +43,7 @@ export const onSelectChange = () => {
   if (node.type !== NODE_TYPES.TEXT) {
     console.log('node not text');
     return {
-      type: 'selected-change',
+      type: FIGMA_EVENT_TYPES.SELECTED_CHANGED,
       status: 'error',
       message: 'Select a single text node.',
     };
@@ -52,7 +52,7 @@ export const onSelectChange = () => {
   console.log('here we are');
   if (node.type === NODE_TYPES.TEXT) {
     return {
-      type: 'selected-change',
+      type: FIGMA_EVENT_TYPES.SELECTED_CHANGED,
       status: 'success',
       content: node.characters,
       fontSize: node.fontSize,
