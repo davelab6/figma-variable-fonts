@@ -1,4 +1,5 @@
-import {setupGlyph, addSpaces} from '../shared/utils';
+import {setupGlyph} from './glyphs';
+import {addSpaces} from '../shared/utils';
 import {FIGMA_EVENT_TYPES, NODE_PROPS} from '../shared/constants';
 import {onSelectChange} from './onSelection';
 
