@@ -11,9 +11,10 @@ function CanvasActions() {
     const {content} = useSelector((state: RootState) => state.activeText);
 
     const createGlyph = () => {
-        const {fontUrl} = fonts[activeFont.fontName];
+        const fontName = activeFont.fontName;
+        const {fontUrl} = fonts[fontName];
         const axes = activeFont.axes;
-        createFigmaGlyph(content, axes, fontUrl);
+        createFigmaGlyph(fontName, content, axes, fontUrl);
     };
 
     return (

@@ -35,7 +35,7 @@ export const loadFontForOutput = (url, callback) => {
     });
 };
 
-export const getSVG = (font, axes, text) => {
+export const getSVG = (fontName, font, axes, text) => {
     const xmlns = 'http://www.w3.org/2000/svg';
 
     try {
@@ -56,9 +56,7 @@ export const getSVG = (font, axes, text) => {
     let advwidth = 0;
     const paths = [];
     glyphrun.glyphs.forEach((glyph) => {
-        console.log('glyph', glyph);
-        const vfData = axes;
-        paths.push({vfData, svg: glyph.path.toSVG(), codePoints: glyph.codePoints});
+        paths.push({fontName, axes, svg: glyph.path.toSVG(), codePoints: glyph.codePoints});
         // paths.push('<path transform="translate(' + advwidth + ',0)" d="' + glyph.path.toSVG() + '"/>');
 
         xMin = Math.min(xMin, advwidth + glyph.bbox.minX);
@@ -89,9 +87,9 @@ export const getSVG = (font, axes, text) => {
     // return svglines.join("\n");
 };
 
-export const createFigmaGlyph = (text, axes, fontUrl) => {
+export const createFigmaGlyph = (fontName, text, axes, fontUrl) => {
     loadFontForOutput(fontUrl, function (font) {
-        const svgPathData = getSVG(font, axes, text);
+        const svgPathData = getSVG(fontName, font, axes, text);
         console.log('svgPathData', svgPathData);
         window.parent.postMessage(
             {

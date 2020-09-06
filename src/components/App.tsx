@@ -12,13 +12,13 @@ const App = () => {
         window.parent.postMessage({pluginMessage: {type: 'on-ui-loaded'}}, '*');
 
         window.addEventListener('message', (event) => {
-            if (
-                event.data.pluginMessage &&
-                event.data.pluginMessage.payload &&
-                event.data.pluginMessage.payload.type === 'selected-change'
-            ) {
-                const {payload} = event.data.pluginMessage;
+            const pm = event.data.pluginMessage;
+            if (pm && pm.payload && pm.payload.type === 'selected-change') {
+                const {payload} = pm;
                 dispatch(updateSelection({...payload}));
+                console.log('payload', payload);
+                if (payload.isVf === 'true') {
+                }
             }
         });
     }, [window]);

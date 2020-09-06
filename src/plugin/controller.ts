@@ -10,12 +10,15 @@ function onSelectChange() {
     }
 
     const node = figma.currentPage.selection[0];
-    if (node.getPluginData('canvas_text_content')) {
+    if (node.getPluginData('node_text_content')) {
         return {
             type: 'selected-change',
             status: 'success',
-            content: node.getPluginData('canvas_text_content'),
-            fontSize: node.getPluginData('canvas_font_size'),
+            axes: JSON.parse(node.getPluginData('node_axes')),
+            activeFont: node.getPluginData('node_active_font'),
+            content: node.getPluginData('node_text_content'),
+            fontSize: node.getPluginData('node_font_size'),
+            isVf: node.getPluginData('is_variable_font'),
         };
     }
 
@@ -50,9 +53,10 @@ const setupGlyph = (pathData) => {
     // node.rotation = 180
 
     node.setPluginData('is_variable_font', 'true');
-    node.setPluginData('canvas_vf_data', JSON.stringify(pathData.vfData));
-    node.setPluginData('canvas_text_content', String.fromCharCode(pathData.codePoints));
-    node.setPluginData('canvas_font_size', '14');
+    node.setPluginData('node_active_font', pathData.activeFont);
+    node.setPluginData('node_axes', JSON.stringify(pathData.axes));
+    node.setPluginData('node_text_content', String.fromCharCode(pathData.codePoints));
+    node.setPluginData('node_font_size', '14');
     const angle = 0;
     node.relativeTransform = [
         [Math.cos(angle), -Math.sin(angle), 0],
