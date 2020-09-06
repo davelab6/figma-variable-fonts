@@ -1,5 +1,6 @@
 import {setupGlyph} from '../shared/utils';
 import {addSpaces} from '../shared/utils';
+import {onSelectChange} from './onSelectChange';
 
 export const updateUiSelection = () => {
   const payload = onSelectChange();
