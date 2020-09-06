@@ -96,9 +96,11 @@ function AxisSlider({name, tag, min, current, max}: AxisSliderProps) {
     const onChange = (newValue: number) => {
         const payload = {axisName: tag, value: newValue};
         dispatch(updateActiveFontAxis(payload));
+
+        // If something is selected, status === 'success'
         if (status === 'success') {
             console.log('no debounce');
-
+            // This is a hack to get the axis value changes to update sooner. Could be done differently.
             if (timeout) {
                 window.cancelAnimationFrame(timeout);
             }
@@ -115,6 +117,7 @@ function AxisSlider({name, tag, min, current, max}: AxisSliderProps) {
             window.cancelAnimationFrame(timeout);
         }
         const payload = {axisName: tag, value: newValue};
+        // If something is selected, status === 'success'
         if (status === 'success') {
             const font = fonts[activeFont.fontName];
             updateSelectedVariableSettings(activeFont.fontName, content, activeFont.axes, font.fontUrl);
