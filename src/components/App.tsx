@@ -17,7 +17,7 @@ const App = () => {
             if (pm && pm.payload && pm.payload.type === 'selected-change') {
                 const {payload} = pm;
                 dispatch(updateSelection({...payload}));
-                console.log('payload', payload);
+                // console.log('payload', payload);
                 if (payload.isVariableFontNode === 'true') {
                     dispatch(
                         updateActiveFontAxes({

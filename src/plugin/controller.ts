@@ -1,5 +1,22 @@
 // @ts-nocheck
 
+function isJsonString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
+/**
+ * How this works
+ *
+ * 1. Check if the node is one or many
+ * 2. Check if the selection has the plugin data
+ * 3. If not text at all, then error out
+ * 4. If is a selected non text node, then go forth
+ */
 function onSelectChange() {
     if (figma.currentPage.selection.length !== 1) {
         return {
@@ -9,18 +26,26 @@ function onSelectChange() {
         };
     }
 
+    console.log('got selection');
     const node = figma.currentPage.selection[0];
+
     if (node.getPluginData('node_text_content')) {
+        let axes = '';
+        const nodeAxes = node.getPluginData('node_axes');
+        if (isJsonString(nodeAxes)) {
+            axes = JSON.parse(nodeAxes);
+        }
         return {
             type: 'selected-change',
             status: 'success',
-            axes: JSON.parse(node.getPluginData('node_axes')),
+            axes,
             fontName: node.getPluginData('node_font_name'),
             content: node.getPluginData('node_text_content'),
             fontSize: node.getPluginData('node_font_size'),
             isVariableFontNode: node.getPluginData('is_variable_font'),
         };
     }
+    console.log('got selection');
 
     if (node.type !== 'TEXT') {
         return {
@@ -85,8 +110,9 @@ function addSpaces(path) {
 }
 
 function updateUiSelection() {
+    const payload = onSelectChange();
     figma.ui.postMessage({
-        payload: onSelectChange(),
+        payload,
     });
 }
 
