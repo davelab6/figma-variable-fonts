@@ -90,7 +90,7 @@ const fontDataSlice = createSlice({
             state.activeFont.axes[axisName] = value;
         },
         updateActiveFont(state, action: PayloadAction<ActiveFont>) {
-            alert('updating');
+            // alert('updating');
             const {fontName, variantName, axes} = action.payload;
             state.activeFont = {
                 fontName,

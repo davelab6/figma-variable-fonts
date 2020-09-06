@@ -111,9 +111,9 @@ figma.ui.onmessage = (msg) => {
     if (msg.type === 'update-selected-variable-settings') {
         console.log('payload', msg.payload);
         const {svgPathData} = msg.payload;
-        node.setPluginData('node_axes', JSON.stringify(svgPathData[0].axes));
         const node = figma.currentPage.selection[0];
         if (node) {
+            node.setPluginData('node_axes', JSON.stringify(svgPathData[0].axes));
             node.vectorPaths = [
                 {
                     windingRule: 'NONZERO',
