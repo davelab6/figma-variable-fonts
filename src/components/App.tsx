@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {HashRouter} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import {FIGMA_EVENT_TYPES} from '../plugin/shared/constants';
 import {route} from './routes';
@@ -9,8 +9,6 @@ import {updateActiveFontAxes} from '../features/fontData/fontDataSlice';
 
 const App = () => {
   const dispatch = useDispatch();
-
-  const {activeFont} = useSelector((state: RootState) => state.fontData);
 
   const setupEvents = () => {
     window.addEventListener('message', (event) => {
