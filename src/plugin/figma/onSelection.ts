@@ -1,5 +1,5 @@
 import {isJsonString} from '../shared/utils';
-import {NODE_TYPES, FIGMA_EVENT_TYPES} from '../shared/constants';
+import {NODE_PROPS, NODE_TYPES, FIGMA_EVENT_TYPES, STATUSES} from '../shared/constants';
 
 /**
  * How this works
@@ -14,7 +14,7 @@ export const onSelectChange = () => {
     console.log('not 1');
     return {
       type: FIGMA_EVENT_TYPES.SELECTED_CHANGED,
-      status: 'error',
+      status: STATUSES.ERROR,
       message: 'Select a single node.',
     };
   }
@@ -22,21 +22,21 @@ export const onSelectChange = () => {
   const node = figma.currentPage.selection[0];
   console.log('node', node);
 
-  if (node.getPluginData('node_text_content')) {
-    console.log('node_text_content');
+  if (node.getPluginData(NODE_PROPS.TEXT_CONTENT)) {
+    console.log(NODE_PROPS.TEXT_CONTENT);
     let axes = '';
-    const nodeAxes = node.getPluginData('node_axes');
+    const nodeAxes = node.getPluginData(NODE_PROPS.AXES);
     if (isJsonString(nodeAxes)) {
       axes = JSON.parse(nodeAxes);
     }
     return {
       type: FIGMA_EVENT_TYPES.SELECTED_CHANGED,
-      status: 'success',
+      status: STATUSES.SUCCESS,
       axes,
-      fontName: node.getPluginData('node_font_name'),
-      content: node.getPluginData('node_text_content'),
-      fontSize: node.getPluginData('node_font_size'),
-      isVariableFontNode: node.getPluginData('is_variable_font'),
+      fontName: node.getPluginData(NODE_PROPS.FONT_NAME),
+      content: node.getPluginData(NODE_PROPS.TEXT_CONTENT),
+      fontSize: node.getPluginData(NODE_PROPS.FONT_SIZE),
+      isVariableFontNode: node.getPluginData(NODE_PROPS.IS_VARIABLE_FONT),
     };
   }
 
@@ -44,7 +44,7 @@ export const onSelectChange = () => {
     console.log('node not text');
     return {
       type: FIGMA_EVENT_TYPES.SELECTED_CHANGED,
-      status: 'error',
+      status: STATUSES.ERROR,
       message: 'Select a single text node.',
     };
   }
@@ -53,7 +53,7 @@ export const onSelectChange = () => {
   if (node.type === NODE_TYPES.TEXT) {
     return {
       type: FIGMA_EVENT_TYPES.SELECTED_CHANGED,
-      status: 'success',
+      status: STATUSES.SUCCESS,
       content: node.characters,
       fontSize: node.fontSize,
     };

@@ -1,5 +1,5 @@
 import {setupGlyph, addSpaces} from '../shared/utils';
-import {FIGMA_EVENT_TYPES} from '../shared/constants';
+import {FIGMA_EVENT_TYPES, NODE_PROPS} from '../shared/constants';
 import {onSelectChange} from './onSelectChange';
 
 export const updateUiSelection = () => {
@@ -33,7 +33,7 @@ export const setupFigmaEvents = () => {
       const {svgPathData} = msg.payload;
       const node = figma.currentPage.selection[0];
       if (node) {
-        node.setPluginData('node_axes', JSON.stringify(svgPathData[0].axes));
+        node.setPluginData(NODE_PROPS.AXES, JSON.stringify(svgPathData[0].axes));
         node.vectorPaths = [
           {
             windingRule: 'NONZERO',

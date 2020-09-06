@@ -1,4 +1,5 @@
 import {addSpaces} from '../shared/utils';
+import {NODE_PROPS} from '../shared/constants';
 
 export const setupGlyph = (pathData) => {
   const node = figma.createVector();
@@ -14,11 +15,11 @@ export const setupGlyph = (pathData) => {
   node.strokeWeight = 0;
   // node.rotation = 180
 
-  node.setPluginData('is_variable_font', 'true');
-  node.setPluginData('node_font_name', pathData.fontName);
-  node.setPluginData('node_axes', JSON.stringify(pathData.axes));
-  node.setPluginData('node_text_content', String.fromCharCode(pathData.codePoints));
-  node.setPluginData('node_font_size', '14');
+  node.setPluginData(NODE_PROPS.IS_VARIABLE_FONT, 'true');
+  node.setPluginData(NODE_PROPS.FONT_NAME, pathData.fontName);
+  node.setPluginData(NODE_PROPS.AXES, JSON.stringify(pathData.axes));
+  node.setPluginData(NODE_PROPS.TEXT_CONTENT, String.fromCharCode(pathData.codePoints));
+  node.setPluginData(NODE_PROPS.FONT_SIZE, '14');
   const angle = 0;
   node.relativeTransform = [
     [Math.cos(angle), -Math.sin(angle), 0],
