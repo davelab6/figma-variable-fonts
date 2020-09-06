@@ -11,20 +11,6 @@ const App = () => {
 
     const {activeFont} = useSelector((state: RootState) => state.fontData);
 
-    const activeFontName = activeFont ? activeFont.fontName : null;
-
-    const updateActiveAxes = (payload) => {
-        console.log('activeFont', activeFont);
-        if (payload.isVariableFontNode === 'true') {
-            dispatch(
-                updateActiveFontAxes({
-                    fontName: payload.fontName,
-                    axes: JSON.parse(payload.axes),
-                })
-            );
-        }
-    };
-
     const setupEvents = () => {
         window.addEventListener('message', (event) => {
             const pm = event.data.pluginMessage;
@@ -32,7 +18,14 @@ const App = () => {
                 const {payload} = pm;
                 dispatch(updateSelection({...payload}));
                 console.log('payload', payload);
-                updateActiveAxes(payload);
+                if (payload.isVariableFontNode === 'true') {
+                    dispatch(
+                        updateActiveFontAxes({
+                            fontName: payload.fontName,
+                            axes: payload.axes,
+                        })
+                    );
+                }
             }
         });
     };
