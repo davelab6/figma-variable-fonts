@@ -95,7 +95,10 @@ function AxisSlider({name, tag, min, current, max}: AxisSliderProps) {
     const onChange = (newValue: number) => {
         const payload = {axisName: tag, value: newValue};
         dispatch(updateActiveFontAxis(payload));
+    };
 
+    const onChangeComplete = (newValue: number) => {
+        const payload = {axisName: tag, value: newValue};
         if (status === 'success') {
             const font = fonts[activeFont.fontName];
             updateSelectedVariableSettings(activeFont.fontName, content, activeFont.axes, font.fontUrl);
@@ -114,7 +117,14 @@ function AxisSlider({name, tag, min, current, max}: AxisSliderProps) {
                 </SliderLabelsRight>
             </SliderLabels>
             <SliderRow>
-                <Slider tooltip={false} min={min} max={max} value={current} onChange={onChange} />
+                <Slider
+                    onChangeComplete={onChangeComplete}
+                    tooltip={false}
+                    min={min}
+                    max={max}
+                    value={current}
+                    onChange={onChange}
+                />
             </SliderRow>
         </AxisSliderWrapper>
     );
