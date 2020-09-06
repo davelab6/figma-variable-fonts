@@ -1,5 +1,5 @@
 export const NODE_TYPES = {
-  TEXT: 'text',
+  TEXT: 'TEXT',
 };
 
 export const FIGMA_EVENT_TYPES = {
