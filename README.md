@@ -1,4 +1,7 @@
 # Figma Variable Fonts
+
+"If you can play [DOOM](https://twitter.com/possan/status/1193164022885081089) in Figma, why not use variable fonts?" 
+
 A plugin to provide basic variable fonts support through Samsa.js.
 
 This plugin allows you to:
