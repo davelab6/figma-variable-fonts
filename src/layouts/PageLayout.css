@@ -1,8 +1,0 @@
-#app,
-div[data-reactroot] {
-    height: 100%;
-}
-.ant-layout {
-    background-color: #f3f9f9;
-    height: 100%;
-}
